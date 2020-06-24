@@ -1,0 +1,34 @@
+.Header {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: space-between;
+
+  height: 40px;
+
+  user-select: none;
+}
+
+.Logo {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.Menu {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+
+  display: flex;
+  align-items: center;
+  text-align: right;
+
+  padding: 0 15px 0 15px;
+}
