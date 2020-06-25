@@ -1,15 +1,18 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import "./container.css";
 import Day from "./day";
 import animeScissors, {titlelist} from "../api/getanime";
 
 const Container = () => {
+    const [titles, setTitles] = useState([]);
 
     useEffect(() => {
         (async function xd() {
                 await animeScissors();
-                console.log(titlelist);
+                console.log('Titlelist is ', titlelist);
                 console.log('ók!');
+                setTitles(titles => titles = [...titlelist]);
+                console.log('Titlelist comparison: ', titles, typeof titles);
             }
         )();
     }, []);
@@ -36,8 +39,8 @@ const Container = () => {
             </div>
 
             <div className='Days'>
-                {Array(31).fill(1).map((el, i) =>
-                    <Day id={(i + 1).toString().padStart(2, '0')} key={i} ani={titlelist[i]}/>
+                {titles.map((el, i) =>
+                    <Day id={(i + 1).toString().padStart(2, '0')} key={i} ani={titles[i]}/>
                 )}
 
             </div>

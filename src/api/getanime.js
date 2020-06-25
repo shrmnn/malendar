@@ -3,15 +3,18 @@ const api = 'https://private-anon-724800419f-jikan.apiary-proxy.com/v3/season/';
 export let titlelist = [];
 
 const getSeason = async () => {
-    const response = await fetch(api);
-    if (response.status === 429) {
-        console.log('Too many requests!');
-    }
-    //console.log('response is ', response);
+    const response = await fetch(api)
+        .then(res => {
+            if (res.status === 429) {
+                console.log('Too many requests!');
+            }
+            //console.log('response is ', response);
+            if (!res.ok) {
+                console.error("Could not fetch!");
+            }
+            return res;
+        });
 
-    if (!response.ok) {
-        console.error("Could not fetch!");
-    }
     const resJSON = await response.json();
     return resJSON['anime'];
 }

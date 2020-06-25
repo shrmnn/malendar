@@ -87,7 +87,7 @@
     border-radius: 10px;
 
     background: $day-background;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, $base-color 105%), url("https://i.ytimg.com/vi/TJd5UkS21Mw/maxresdefault.jpg") center center no-repeat;
+    //background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, $base-color 105%), url("https://i.ytimg.com/vi/TJd5UkS21Mw/maxresdefault.jpg") center center no-repeat;
     background-size: cover;
 
     stroke: $base-color;
@@ -98,11 +98,13 @@
       display: flex;
       justify-content: center;
       //background: $base-color;
-      //background: rgba(77,77,77,33%);
+      background: rgba(77, 77, 77, 33%);
 
       border-radius: 50%;
       font-size: 1.2rem;
       font-weight: bold;
+
+
       width: 2rem;
       height: 2rem;
       line-height: 2rem;
@@ -118,7 +120,7 @@
       line-height: Calc(0.2vw + 12px);
       display: flex;
       align-items: center;
-      text-align: center;
+      text-align: left;
 
       padding: 0 5px 5px 5px;
     }
@@ -130,7 +132,7 @@
       line-height: Calc(0.2vw + 10px);
       display: flex;
       align-items: center;
-      text-align: center;
+      text-align: left;
       padding: 0 5px 5px 15px;
     }
   }
