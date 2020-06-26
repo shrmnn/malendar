@@ -1,7 +1,9 @@
 @import "../colors";
 
 .Container {
-  height: Calc(100% - 40px);
+  //height: Calc(100vh - 80px);
+  //height: 100vh;
+  min-height: Calc(100vh - 80px);
 
   display: flex;
   flex-direction: column;
@@ -11,7 +13,9 @@
   display: flex;
   flex-direction: column;
 
-  transition: 0.3s;
+  user-select: none;
+
+  transition: 0.3s ease-in-out;
 
   .padding-left {
     padding: 0 5px 0 0;
@@ -67,7 +71,10 @@
 }
 
 .Days {
+  //height: 100%;
   display: flex;
+  flex: 1 0 auto;
+
   flex-direction: row;
   flex-wrap: wrap;
   align-content: space-around;
@@ -88,7 +95,8 @@
 
     background: $day-background;
     //background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, $base-color 105%), url("https://i.ytimg.com/vi/TJd5UkS21Mw/maxresdefault.jpg") center center no-repeat;
-    background-size: cover;
+    //background: linear-gradient(180deg, $day-background 0%, $base-color 105%);
+    background-size: cover !important;
 
     stroke: $base-color;
 
@@ -135,6 +143,18 @@
       text-align: left;
       padding: 0 5px 5px 15px;
     }
+  }
+
+  .simpleText {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 4vw;
+    line-height: 100%;
   }
 }
 

@@ -1,0 +1,23 @@
+.Footer {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  color: #fff;
+}
+.Footer .footerLeft {
+  border: 0px;
+}
+.Footer .footerLeft a {
+  text-decoration: none;
+}
+.Footer .footerLeft img {
+  display: block;
+  fill: #fff;
+  filter: invert(1);
+}
+
+/*# sourceMappingURL=footer.css.map */

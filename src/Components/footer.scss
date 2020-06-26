@@ -1,4 +1,31 @@
+@import '../colors';
+
 .Footer {
   width: 100%;
   height: 40px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  color: $text-color;
+
+  .footerRight {
+
+  }
+
+  .footerLeft {
+    border: 0px;
+
+    a {
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      fill: $text-color;
+      filter: invert(1);
+    }
+  }
 }

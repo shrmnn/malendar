@@ -1,24 +1,19 @@
-import React, {useEffect} from "react";
+import React from "react";
 
 const Day = (props) => {
-
-    useEffect(() => {
-        console.log(props, ' rendered')
-    }, [props]);
-
     const handleClicked = () => {
         console.log('day is clicked!')
     };
 
+    let styledDay = {
+        background: `linear-gradient(180deg, rgba(0,0,0,0) 0%, #0E0E0E 105%), url(${props.ani ? props.ani.image : ''}) center center no-repeat`
+    };
+
     return (
-        <div className='day' style={
-            {
-                background: `linear-gradient(180deg, rgba(0,0,0,0) 0%, #0E0E0E 105%), url(${props.ani ? props.ani.image : ''}) center center no-repeat`,
-                backgroundSize: 'cover'
-            }
-        }
+
+        <div className='day' style={props.ani.image ? styledDay : null}
              onClick={handleClicked}>
-            <div className='dayNum'>{props.id}</div>
+            <div className='dayNum'>{props.ani.day ? props.ani.day.toString().padStart(2, '0') : props.id}</div>
             <div>
                 <div className='dayTitle'>
                     {props.ani ? props.ani.title : '男子高校生で売れっ子ライトノベル作家をしているけれど、年下のクラスメイトで声優の女の子に首を絞められている! The Animation 2nd Season'}
