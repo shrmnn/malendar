@@ -10,20 +10,16 @@
     user-select: none;
     transition: 0.3s ease-in-out;
 }
-
 .Head-Container .padding-left {
     padding: 0 5px 0 0;
 }
-
 .Head-Container .padding-right {
     padding: 0 0 0 5px;
 }
-
 .Head-Container .Date-nav {
     display: flex;
     flex-direction: row;
 }
-
 .Head-Container .Date-nav .dateMonth {
     font-style: normal;
     font-weight: normal;
@@ -33,7 +29,6 @@
     align-items: flex-end;
     text-align: center;
 }
-
 .Head-Container .Date-nav .dateYear {
     font-style: normal;
     font-weight: 200;
@@ -43,7 +38,6 @@
     align-items: flex-end;
     text-align: center;
 }
-
 .Head-Container .Release-nav {
     display: flex;
     flex-direction: row;
@@ -56,31 +50,36 @@
     font-weight: normal;
 }
 
+.hidden {
+    opacity: 0;
+}
+
 .Days {
     display: flex;
     flex: 1 0 auto;
     flex-direction: row;
     flex-wrap: wrap;
     align-content: space-around;
-    justify-content: normal;
+    justify-content: space-between;
     padding: 5px 0 5px 0;
 }
-
 .Days .day {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 18%;
+    width: 13%;
     min-width: auto;
     height: calc(125px + 24px);
-    margin: 24px auto auto 0;
-    border-radius: 10px;
-    background: #346784;
+    margin: 8px 4px 8px 4px;
+    border-radius: 16px;
+    filter: drop-shadow(0 0 0.75rem rgba(255, 255, 255, 0.05));
+    background: rgba(255, 255, 255, 0.05);
     background-size: cover !important;
-    stroke: #0E0E0E;
     transition: 0.3s ease-in-out;
+    /*&:nth-child(7n) {
+      margin-right: 0;
+    }*/
 }
-
 .Days .day .dayNum {
     display: flex;
     justify-content: center;
@@ -94,7 +93,6 @@
     margin: 6px 0 0 6px;
     user-select: none;
 }
-
 .Days .day .dayTitle {
     font-style: normal;
     font-weight: 500;
@@ -105,7 +103,6 @@
     text-align: left;
     padding: 0 5px 5px 5px;
 }
-
 .Days .day .daySubtitle {
     font-style: italic;
     font-weight: 200;
@@ -116,7 +113,6 @@
     text-align: left;
     padding: 0 5px 5px 15px;
 }
-
 .Days .simpleText {
     width: 100%;
     display: flex;
@@ -131,6 +127,10 @@
     .Days {
         display: flex;
         flex-direction: column;
+    }
+
+    .Days .poshelnahuy {
+        display: none;
     }
 
     .Days .day {

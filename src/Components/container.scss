@@ -70,6 +70,10 @@
   }
 }
 
+.hidden {
+  opacity: 0;
+}
+
 .Days {
   //height: 100%;
   display: flex;
@@ -78,29 +82,37 @@
   flex-direction: row;
   flex-wrap: wrap;
   align-content: space-around;
-  justify-content: normal;
+  justify-content: space-between;
 
   padding: 5px 0 5px 0;
+
 
   .day {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
-    width: 18%;
+    width: 13%;
     min-width: auto;
     height: Calc(125px + 24px);
-    margin: 24px auto auto 0;
-    border-radius: 10px;
+    //margin: 24px auto auto 0;
+    margin: 8px 4px 8px 4px;
+    border-radius: 16px;
 
-    background: $day-background;
+    filter: drop-shadow(0 0 0.75rem rgba(255, 255, 255, 5%));
+
+    background: rgba(255, 255, 255, 5%);
     //background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, $base-color 105%), url("https://i.ytimg.com/vi/TJd5UkS21Mw/maxresdefault.jpg") center center no-repeat;
     //background: linear-gradient(180deg, $day-background 0%, $base-color 105%);
     background-size: cover !important;
 
-    stroke: $base-color;
 
     transition: .3s ease-in-out;
+
+    /*&:nth-child(7n) {
+      margin-right: 0;
+    }*/
+
 
     .dayNum {
       display: flex;
@@ -156,12 +168,17 @@
     font-size: 4vw;
     line-height: 100%;
   }
+
 }
 
 @media (max-width: 1024px) {
   .Days {
     display: flex;
     flex-direction: column;
+
+    .poshelnahuy {
+      display: none;
+    }
 
     .day {
       width: 100%;
