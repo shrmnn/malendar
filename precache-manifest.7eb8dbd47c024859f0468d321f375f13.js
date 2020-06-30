@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "91c35bb93eb4b01097f6d38f59a2030a",
+    "revision": "902201a7d2dd3e1dab88bb2090ad3dc6",
     "url": "/malendar/index.html"
   },
   {
-    "revision": "7dd4fdd1ae773d4bc7c9",
+    "revision": "aa324fe1f796639fab50",
     "url": "/malendar/static/css/main.ac45e67e.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/malendar/static/js/2.c85fbf71.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "7dd4fdd1ae773d4bc7c9",
-    "url": "/malendar/static/js/main.ee2eebd6.chunk.js"
+    "revision": "aa324fe1f796639fab50",
+    "url": "/malendar/static/js/main.f5e14de6.chunk.js"
   },
   {
     "revision": "123418e687fc7ea567f8",
