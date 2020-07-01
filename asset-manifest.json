@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/malendar/static/css/main.ac45e67e.chunk.css",
-    "main.js": "/malendar/static/js/main.81d0af3e.chunk.js",
-    "main.js.map": "/malendar/static/js/main.81d0af3e.chunk.js.map",
+    "main.css": "/malendar/static/css/main.d93d4672.chunk.css",
+    "main.js": "/malendar/static/js/main.4c4aa7c1.chunk.js",
+    "main.js.map": "/malendar/static/js/main.4c4aa7c1.chunk.js.map",
     "runtime-main.js": "/malendar/static/js/runtime-main.ed17ac73.js",
     "runtime-main.js.map": "/malendar/static/js/runtime-main.ed17ac73.js.map",
     "static/js/2.c85fbf71.chunk.js": "/malendar/static/js/2.c85fbf71.chunk.js",
     "static/js/2.c85fbf71.chunk.js.map": "/malendar/static/js/2.c85fbf71.chunk.js.map",
     "index.html": "/malendar/index.html",
-    "precache-manifest.56476b728619d98bb6b5e09312112b75.js": "/malendar/precache-manifest.56476b728619d98bb6b5e09312112b75.js",
+    "precache-manifest.38f185f30330f12cf2b6ce62eca59f15.js": "/malendar/precache-manifest.38f185f30330f12cf2b6ce62eca59f15.js",
     "service-worker.js": "/malendar/service-worker.js",
-    "static/css/main.ac45e67e.chunk.css.map": "/malendar/static/css/main.ac45e67e.chunk.css.map",
+    "static/css/main.d93d4672.chunk.css.map": "/malendar/static/css/main.d93d4672.chunk.css.map",
     "static/js/2.c85fbf71.chunk.js.LICENSE.txt": "/malendar/static/js/2.c85fbf71.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.ed17ac73.js",
     "static/js/2.c85fbf71.chunk.js",
-    "static/css/main.ac45e67e.chunk.css",
-    "static/js/main.81d0af3e.chunk.js"
+    "static/css/main.d93d4672.chunk.css",
+    "static/js/main.4c4aa7c1.chunk.js"
   ]
 }
