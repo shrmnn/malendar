@@ -1,5 +1,5 @@
 const API = "https://private-anon-98ba329006-jikan.apiary-proxy.com/v3/";
-//const API = "https://api.jikan.moe/v3/";
+//const API = "https://api.codetabs.com/v1/proxy?quest=https://api.jikan.moe/v3/";
 
 export let titlelist = [];
 
@@ -57,19 +57,19 @@ const getSeason = async (year, season) => {
 }*/
 
 const getAnimelist = (anime, month, year) => {
-    let animelist = [];
-    animelist.push(anime.map((el) => el));
-    animelist = animelist[0];
+  let animelist = [];
+  animelist.push(anime.map((el) => el));
+  animelist = animelist[0];
 
-    for (const el in animelist) {
-      animelist[el] = {
-        id: animelist[el].mal_id,
-        title: animelist[el].title,
-        airing: animelist[el].airing_start,
-        image: animelist[el].image_url,
-        studio: animelist[el].producers[0],
-      };
-    }
+  for (const el in animelist) {
+    animelist[el] = {
+      id: animelist[el].mal_id,
+      title: animelist[el].title,
+      airing: animelist[el].airing_start,
+      image: animelist[el].image_url,
+      studio: animelist[el].producers[0],
+    };
+  }
   titlelist = animelist;
   sortAnime();
   getAnimeByMonth(month, year);
@@ -79,8 +79,8 @@ const getAnimelist = (anime, month, year) => {
 };
 
 const sortAnime = () => {
-    //console.log('sort has started!', titlelist);
-    let animelist = [...titlelist];
+  //console.log('sort has started!', titlelist);
+  let animelist = [...titlelist];
 
   animelist.sort((a, b) => {
     if (a.airing > b.airing) {
@@ -108,7 +108,7 @@ const getAnimeByMonth = (month, year) => {
   newlist.length = getLastDayOfMonth(month, year);
   newlist.length = 35;
   newlist = fillNewList(newlist, month, year);
-  console.log("newlist is", newlist);
+  //console.log("newlist is", newlist);
 
   animelist.forEach((a, index) => {
     if (
@@ -124,7 +124,7 @@ const getAnimeByMonth = (month, year) => {
     return false;
   });
 
-  console.log("animelist after gabm is", newlist);
+  //console.log("animelist after gabm is", newlist);
   titlelist = [...newlist];
 };
 
@@ -139,25 +139,25 @@ const fillNewList = (newlist, month, year) => {
 
   let animelist = [...newlist];
   animelist.fill(dumbTitle, 0, animelist.length);
-  console.log(
-      "Filled list is ",
-      animelist
-      //"\nlast day of month is ",
-      //lastDayOfMonth
-  );
+  /*console.log(
+    "Filled list is ",
+    animelist
+    //"\nlast day of month is ",
+    //lastDayOfMonth
+  );*/
   return animelist;
 };
 
 const animeScissors = async (year, season, month) => {
-  console.log(`${API}season/${year}/${season}/`);
-  const animeJSON = await getSeason(year, season);
+  //console.log(`${API}season/${year}/${season}/`);
+  let animeJSON = await getSeason(year, season);
   //console.log(animeJSON);
   //let result = await getAnimelist(animeJSON);
   return await getAnimelist(animeJSON, month, year);
 };
 
-const sleep = (milliseconds) => {
+/*const sleep = (milliseconds) => {
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
-};
+};*/
 
 export default animeScissors;

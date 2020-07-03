@@ -1,160 +1,184 @@
 .Container {
-    min-height: calc(100vh - 80px);
-    display: flex;
-    flex-direction: column;
+  min-height: calc(100vh - 80px);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .Head-Container {
-    display: flex;
-    flex-direction: column;
-    user-select: none;
-    transition: 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  user-select: none;
+  transition: 0.3s ease-in-out;
 }
 .Head-Container .padding-left {
-    padding: 0 5px 0 0;
+  padding: 0 5px 0 0;
 }
 .Head-Container .padding-right {
-    padding: 0 0 0 5px;
+  padding: 0 0 0 5px;
 }
 .Head-Container .Date-nav {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 .Head-Container .Date-nav .dateMonth {
-    font-style: normal;
-    font-weight: normal;
-    font-size: 72px;
-    line-height: 84px;
-    display: flex;
-    align-items: flex-end;
-    text-align: center;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 72px;
+  line-height: 84px;
+  display: flex;
+  justify-content: start;
+  align-items: flex-end;
+  margin: 0 0 0 -5px;
 }
 .Head-Container .Date-nav .dateYear {
-    font-style: normal;
-    font-weight: 200;
-    font-size: 55px;
-    line-height: 69px;
-    display: flex;
-    align-items: flex-end;
-    text-align: center;
+  font-style: normal;
+  font-weight: 200;
+  font-size: 55px;
+  line-height: 69px;
+  display: flex;
+  align-items: flex-end;
+  text-align: right;
 }
 .Head-Container .Release-nav {
-    display: flex;
-    flex-direction: row;
-    font-size: 24px;
-    line-height: 28px;
-    font-weight: 200;
+  display: flex;
+  flex-direction: row;
+  font-size: 24px;
+  line-height: 28px;
+  font-weight: 200;
 }
-
 .Head-Container .Release-nav .active {
-    font-weight: normal;
+  font-weight: normal;
 }
 
 .hidden {
-    opacity: 0;
+  opacity: 0;
 }
 
 .Days {
-    display: flex;
-    flex: 1 0 auto;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-content: space-around;
-    justify-content: space-between;
-    padding: 5px 0 5px 0;
+  width: 100%;
+  display: flex;
+  flex: 1 0 auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: space-around;
+  justify-content: space-between;
+  padding: 5px 0 5px 0;
 }
 .Days .day {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 13%;
-    min-width: auto;
-    height: calc(125px + 24px);
-    margin: 8px 4px 8px 4px;
-    border-radius: 16px;
-    filter: drop-shadow(0 0 0.75rem rgba(255, 255, 255, 0.05));
-    background: rgba(255, 255, 255, 0.05);
-    background-size: cover !important;
-    transition: 0.3s ease-in-out;
-    /*&:nth-child(7n) {
-      margin-right: 0;
-    }*/
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  width: 13%;
+  min-width: auto;
+  height: calc(125px + 24px);
+  min-height: 125px;
+  margin: 8px 4px 8px 4px;
+  border-radius: 16px;
+  filter: drop-shadow(0 0 0.75rem rgba(255, 255, 255, 0.05));
+  background: rgba(255, 255, 255, 0.05);
+  background-size: cover !important;
+  transition: transform 0.2s;
+}
+.Days .day:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 0.75rem rgba(255, 255, 255, 0.15));
 }
 .Days .day .dayNum {
-    display: flex;
-    justify-content: center;
-    background: rgba(77, 77, 77, 0.33);
-    border-radius: 50%;
-    font-size: 1.2rem;
-    font-weight: bold;
-    width: 2rem;
-    height: 2rem;
-    line-height: 2rem;
-    margin: 6px 0 0 6px;
-    user-select: none;
+  display: flex;
+  justify-content: center;
+  background: rgba(77, 77, 77, 0.33);
+  border-radius: 50%;
+  font-size: 1.2rem;
+  font-weight: bold;
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+  margin: 6px 0 0 6px;
+  user-select: none;
 }
 .Days .day .dayTitle {
-    font-style: normal;
-    font-weight: 500;
-    font-size: calc(0.05vw + 12px);
-    line-height: calc(0.2vw + 12px);
-    display: flex;
-    align-items: center;
-    text-align: left;
-    padding: 0 5px 5px 5px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: calc(0.05vw + 12px);
+  line-height: calc(0.2vw + 12px);
+  display: flex;
+  align-items: center;
+  text-align: left;
+  padding: 0 5px 5px 5px;
 }
 .Days .day .daySubtitle {
-    font-style: italic;
-    font-weight: 200;
-    font-size: calc(0.1vw + 10px);
-    line-height: calc(0.2vw + 10px);
-    display: flex;
-    align-items: center;
-    text-align: left;
-    padding: 0 5px 5px 15px;
+  font-style: italic;
+  font-weight: 200;
+  font-size: calc(0.1vw + 10px);
+  line-height: calc(0.2vw + 10px);
+  display: flex;
+  align-items: center;
+  text-align: left;
+  padding: 0 5px 5px 15px;
 }
-.Days .simpleText {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 4vw;
-    line-height: 100%;
+.Days .day:nth-child(7n) {
+  margin-right: 0;
+}
+.Days .day:nth-child(7n-6) {
+  margin-left: 0;
+}
+.Days .filledDay {
+  cursor: default;
+}
+.Days .filledDay:hover {
+  transform: none !important;
+}
+.Days .loading {
+  align-self: center;
+  justify-self: center;
+  font-size: 6vw;
+  filter: grayscale(100%) saturate(200%) invert(10%);
+  transition: 0.2s ease-in-out;
+  user-select: none;
 }
 
 @media (max-width: 1024px) {
-    .Days {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .Days .poshelnahuy {
-        display: none;
-    }
-
-    .Days .day {
-        width: 100%;
-        height: 40vh;
-        border-radius: 20px;
-    }
-
-    .Days .day .dayNum {
-        font-size: 2rem;
-        line-height: 3rem;
-        width: 3rem;
-        height: 3rem;
-    }
-
-    .Days .day .dayTitle {
-        font-size: calc(1vw + 12px);
-        line-height: 4vw;
-    }
-
-    .Days .day .daySubtitle {
-        font-size: calc(1vw + 10px);
-        line-height: 3vw;
-    }
+  .Days {
+    display: flex;
+  }
+  .Days .filledDay {
+    display: none;
+  }
+  .Days .day {
+    width: 30%;
+    height: 40vh;
+    min-height: 200px;
+  }
+  .Days .day .dayNum {
+    font-size: 2rem;
+    line-height: 3rem;
+    width: 3rem;
+    height: 3rem;
+  }
+  .Days .day .dayTitle {
+    font-size: calc(1vw + 12px);
+    line-height: 4vw;
+  }
+  .Days .day .daySubtitle {
+    font-size: calc(1vw + 10px);
+    line-height: 3vw;
+  }
+  .Days .day:hover {
+    transform: none;
+  }
+}
+@media (max-width: 700px) {
+  .Days {
+    flex-direction: column;
+  }
+  .Days .day {
+    width: 100%;
+    height: 40vh;
+    border-radius: 20px;
+  }
 }
 
 /*# sourceMappingURL=container.css.map */
