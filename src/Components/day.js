@@ -1,10 +1,10 @@
 import React from "react";
 
-const Day = (props) => {
+const Day = React.memo((props) => {
   const handleClicked = () => {
     console.log("day is clicked!");
     if (props.ani.id) {
-      window.open(`https://myanimelist.net/anime/${props.ani.id}`);
+      window.open(`https://myanimelist.net/anime/${props.ani.id}`, "_blank");
     }
   };
 
@@ -17,10 +17,9 @@ const Day = (props) => {
   return (
       <div
           aria-label={`Anime is ${props.ani.title}, their airing date is ${props.ani.airing}`}
-          className={`day 
-      ${!props.ani.day ? "filledDay" : ""} 
-      ${props.id > props.ldm ? "hidden" : ""}
-      `}
+          className={`day ${!props.ani.day ? "filledDay" : ""} ${
+              props.id > props.ldm ? "hidden" : ""
+          }`}
           style={props.ani.image ? styledDay : null}
           onClick={handleClicked}
       >
@@ -45,6 +44,6 @@ const Day = (props) => {
         </div>
       </div>
   );
-};
+});
 
 export default Day;

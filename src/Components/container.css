@@ -5,6 +5,10 @@
   flex-direction: column;
 }
 
+.hidden {
+  opacity: 0;
+}
+
 .Head-Container {
   display: flex;
   flex-direction: column;
@@ -12,6 +16,7 @@
   user-select: none;
   transition: 0.3s ease-in-out;
 }
+
 .Head-Container .padding-left {
   padding: 0 5px 0 0;
 }
@@ -50,10 +55,6 @@
 }
 .Head-Container .Release-nav .active {
   font-weight: normal;
-}
-
-.hidden {
-  opacity: 0;
 }
 
 .Days {
@@ -122,22 +123,37 @@
 .Days .day:nth-child(7n) {
   margin-right: 0;
 }
+
 .Days .day:nth-child(7n-6) {
   margin-left: 0;
 }
+
 .Days .filledDay {
   cursor: default;
 }
+
 .Days .filledDay:hover {
   transform: none !important;
 }
-.Days .loading {
-  align-self: center;
-  justify-self: center;
+
+.loading {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: fixed;
+  left: 0;
+  justify-content: center;
+  justify-items: center;
+  align-content: center;
+  align-items: center;
+  background: #0E0E0E;
   font-size: 6vw;
-  filter: grayscale(100%) saturate(200%) invert(10%);
+  text-align: center;
+  filter: grayscale(100%);
   transition: 0.2s ease-in-out;
+  overflow: hidden;
   user-select: none;
+  z-index: 999;
 }
 
 @media (max-width: 1024px) {

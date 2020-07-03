@@ -10,6 +10,10 @@
   flex-direction: column;
 }
 
+.hidden {
+  opacity: 0;
+}
+
 .Head-Container {
   display: flex;
   flex-direction: column;
@@ -72,9 +76,7 @@
   }
 }
 
-.hidden {
-  opacity: 0;
-}
+
 
 .Days {
   //height: 100%;
@@ -176,20 +178,34 @@
     }
   }
 
-  .loading {
-    align-self: center;
-    justify-self: center;
-
-    font-size: 6vw;
-    //line-height: 100%;
-    filter: grayscale(100%) saturate(200%) invert(10%);
-
-    transition: .2s ease-in-out;
-
-    user-select: none;
-  }
 }
 
+.loading {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  position: fixed;
+  left: 0;
+
+  justify-content: center;
+  justify-items: center;
+  align-content: center;
+  align-items: center;
+
+  background: $base-color;
+
+  font-size: 6vw;
+  text-align: center;
+  //line-height: 100%;
+  filter: grayscale(100%);
+
+  transition: .2s ease-in-out;
+
+  overflow: hidden;
+  user-select: none;
+  z-index: 999;
+}
 
 @media (max-width: 1024px) {
   .Days {

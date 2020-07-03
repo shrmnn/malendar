@@ -74,7 +74,7 @@ const getAnimelist = (anime, month, year) => {
   sortAnime();
   getAnimeByMonth(month, year);
 
-  //console.log(titlelist);
+  //console.log("getAnimelist is ", titlelist);
   return true;
 };
 
@@ -105,19 +105,23 @@ export const getLastDayOfMonth = (month, year) => {
 const getAnimeByMonth = (month, year) => {
   let animelist = [...titlelist];
   let newlist = [];
-  newlist.length = getLastDayOfMonth(month, year);
+  //newlist.length = getLastDayOfMonth(month, year);
   newlist.length = 35;
   newlist = fillNewList(newlist, month, year);
   //console.log("newlist is", newlist);
 
+  let firstDayOfMonth = new Date(`01 ${month} ${year}`).getTime();
+  let lastDayOfMonth = new Date(
+      `${getLastDayOfMonth(month, year)} ${month} ${year}`
+  ).getTime();
+
   animelist.forEach((a, index) => {
-    if (
-        new Date(a.airing).getTime() <=
-        new Date(`31 ${month} ${year}`).getTime() &&
-        new Date(a.airing).getTime() >= new Date(`01 ${month} ${year}`).getTime()
-    ) {
-      //console.log(a, 'a.airing is true');
-      a.day = new Date(a.airing).getDate();
+    let currentDate = new Date(a.airing).getTime();
+
+    if (currentDate <= lastDayOfMonth && currentDate >= firstDayOfMonth) {
+      //console.log(firstDayOfMonth, currentDate, lastDayOfMonth);
+      //console.log(a, "a.airing is true");
+      a.day = new Date(a.airing).getDate() + 1;
       newlist[a.day - 1] = a;
       return true;
     }
@@ -142,8 +146,6 @@ const fillNewList = (newlist, month, year) => {
   /*console.log(
     "Filled list is ",
     animelist
-    //"\nlast day of month is ",
-    //lastDayOfMonth
   );*/
   return animelist;
 };

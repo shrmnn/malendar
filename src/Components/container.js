@@ -65,56 +65,59 @@ const Container = () => {
 
   return (
       <main className="Container">
-        <div aria-label="head navigation" className="Head-Container">
-          <div className="Date-nav">
-            <div
-                aria-label="select month"
-                className="dateMonth padding-left"
-                onClick={monthClick}
-            >
-              {month}
-            </div>
-            <div
-                aria-label="select year"
-                className="dateYear padding-right"
-                onClick={yearClick}
-            >
-              {year}
-            </div>
-          </div>
-          <div
-              aria-label="select if you want to see ongoing or new releases"
-              className="Release-nav"
-          >
-            <div className="padding-left">Ongoing</div>
-            <div className="padding-right active">New releases</div>
-          </div>
-        </div>
-
-        <div className="Days">
-          {isLoading ? (
-              <Loading/>
-          ) : !isError ? (
-              titles.map((el, i) => (
-                  <Day
-                      id={(i + 1).toString().padStart(2, "0")}
-                      key={i}
-                      ani={titles[i]}
-                      ldm={getLastDayOfMonth(month, year)}
-                  />
-              ))
-          ) : (
-              <Loading text={"Error has occurred(╥﹏╥)"}/>
-          )}
+        <HeadMenu
+            month={month}
+            year={year}
+            monthClick={monthClick}
+            yearClick={yearClick}
+        />
+        <div className={`Days`}>
+          {isLoading || isError ? <Loading error={isError}/> : null}
+          {titles.map((el, i) => (
+              <Day
+                  id={(i + 1).toString().padStart(2, "0")}
+                  key={i}
+                  ani={titles[i]}
+                  ldm={getLastDayOfMonth(month, year)}
+              />
+          ))}
         </div>
       </main>
   );
 };
 
 const Loading = (props) => (
-    <span role="img" aria-label="loading..." className="loading">
-    {props.text ? props.text : "(っ◔◡◔)っ 🍥"}
-  </span>
+    <div aria-label="loading..." className="loading">
+      {props.error ? "Error has occurred(╥﹏╥)" : "(っ◔◡◔)っ 🍥"}
+    </div>
+);
+
+const HeadMenu = (props) => (
+    <div aria-label="head navigation" className="Head-Container">
+      <div className="Date-nav">
+        <div
+            aria-label="select month"
+            className="dateMonth padding-left"
+            onClick={props.monthClick}
+        >
+          {props.month}
+        </div>
+        <div
+            aria-label="select year"
+            className="dateYear padding-right"
+            onClick={props.yearClick}
+        >
+          {props.year}
+        </div>
+      </div>
+      <div
+          aria-label="select if you want to see ongoing or new releases"
+          className="Release-nav"
+      >
+        <div className="padding-left">Ongoing</div>
+        <div className="padding-right active">New releases</div>
+      </div>
+    </div>
 );
 
 export default Container;
