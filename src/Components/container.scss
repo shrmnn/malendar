@@ -32,6 +32,7 @@
   }
 
   .Date-nav {
+
     display: flex;
     flex-direction: row;
 
@@ -41,9 +42,10 @@
       font-size: 72px;
       line-height: 84px;
       display: flex;
-      justify-content: start;
+      justify-content: flex-start;
       align-items: flex-end;
-      margin: 0 0 0 -5px;
+
+      cursor: pointer;
 
     }
 
@@ -56,7 +58,24 @@
       align-items: flex-end;
       text-align: right;
 
+      cursor: pointer;
+    }
 
+    .button {
+      padding: 0;
+      background: initial;
+      color: $text-color;
+      font-size: 50px;
+      border: none;
+
+      &:focus {
+        outline: none;
+      }
+
+      img {
+        height: 50%;
+        filter: invert(1);
+      }
     }
   }
 
@@ -74,8 +93,8 @@
       font-weight: normal;
     }
   }
-}
 
+}
 
 
 .Days {
@@ -118,7 +137,6 @@
       filter: drop-shadow(0 0 0.75rem rgba(255, 255, 255, 15%));
     }
 
-
     .dayNum {
       display: flex;
       justify-content: center;
@@ -136,6 +154,11 @@
       margin: 6px 0 0 6px;
 
       user-select: none;
+
+    }
+
+    .today {
+      background-color: rgba(63, 127, 191, 65%);
     }
 
     .dayTitle {

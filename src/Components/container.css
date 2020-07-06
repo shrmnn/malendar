@@ -16,7 +16,6 @@
   user-select: none;
   transition: 0.3s ease-in-out;
 }
-
 .Head-Container .padding-left {
   padding: 0 5px 0 0;
 }
@@ -28,33 +27,54 @@
   flex-direction: row;
 }
 .Head-Container .Date-nav .dateMonth {
-  font-style: normal;
-  font-weight: normal;
-  font-size: 72px;
-  line-height: 84px;
-  display: flex;
-  justify-content: start;
-  align-items: flex-end;
-  margin: 0 0 0 -5px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 72px;
+    line-height: 84px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    cursor: pointer;
 }
+
 .Head-Container .Date-nav .dateYear {
-  font-style: normal;
-  font-weight: 200;
-  font-size: 55px;
-  line-height: 69px;
-  display: flex;
-  align-items: flex-end;
-  text-align: right;
+    font-style: normal;
+    font-weight: 200;
+    font-size: 55px;
+    line-height: 69px;
+    display: flex;
+    align-items: flex-end;
+    text-align: right;
+    cursor: pointer;
 }
+
+.Head-Container .Date-nav .button {
+    padding: 0;
+    background: initial;
+    color: #fff;
+    font-size: 50px;
+    border: none;
+}
+
+.Head-Container .Date-nav .button:focus {
+    outline: none;
+}
+
+.Head-Container .Date-nav .button img {
+    height: 50%;
+    filter: invert(1);
+}
+
 .Head-Container .Release-nav {
-  display: flex;
-  flex-direction: row;
-  font-size: 24px;
-  line-height: 28px;
-  font-weight: 200;
+    display: flex;
+    flex-direction: row;
+    font-size: 24px;
+    line-height: 28px;
+    font-weight: 200;
 }
+
 .Head-Container .Release-nav .active {
-  font-weight: normal;
+    font-weight: normal;
 }
 
 .Days {
@@ -90,25 +110,30 @@
 .Days .day .dayNum {
   display: flex;
   justify-content: center;
-  background: rgba(77, 77, 77, 0.33);
-  border-radius: 50%;
-  font-size: 1.2rem;
-  font-weight: bold;
-  width: 2rem;
-  height: 2rem;
-  line-height: 2rem;
-  margin: 6px 0 0 6px;
-  user-select: none;
+    background: rgba(77, 77, 77, 0.33);
+    border-radius: 50%;
+    font-size: 1.2rem;
+    font-weight: bold;
+    width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
+    margin: 6px 0 0 6px;
+    user-select: none;
 }
+
+.Days .day .today {
+    background-color: rgba(63, 127, 191, 0.65);
+}
+
 .Days .day .dayTitle {
-  font-style: normal;
-  font-weight: 500;
-  font-size: calc(0.05vw + 12px);
-  line-height: calc(0.2vw + 12px);
-  display: flex;
-  align-items: center;
-  text-align: left;
-  padding: 0 5px 5px 5px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: calc(0.05vw + 12px);
+    line-height: calc(0.2vw + 12px);
+    display: flex;
+    align-items: center;
+    text-align: left;
+    padding: 0 5px 5px 5px;
 }
 .Days .day .daySubtitle {
   font-style: italic;
@@ -123,15 +148,12 @@
 .Days .day:nth-child(7n) {
   margin-right: 0;
 }
-
 .Days .day:nth-child(7n-6) {
   margin-left: 0;
 }
-
 .Days .filledDay {
   cursor: default;
 }
-
 .Days .filledDay:hover {
   transform: none !important;
 }

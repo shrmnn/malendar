@@ -1,6 +1,6 @@
 {
   "name": "malendar",
-  "version": "02.07.2020.3",
+  "version": "05.07.2020.2",
   "homepage": "http://shrmnn.github.io/malendar",
   "private": true,
   "dependencies": {
@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^7.2.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-month-picker": "^2.2.0",
     "react-scripts": "3.4.1"
   },
   "scripts": {

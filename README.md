@@ -5,7 +5,8 @@ Malendar is a web-application that allows you to see calendar for upcoming (and 
 
 ![Screenshot](https://sun9-55.userapi.com/3iGuOVjCfdRO-AVLaP_ui2undlYrsbRVqi0zpQ/BWP-YSKlv-A.jpg)
 
-###To-do:
+To-do:
+-
 
 - [ ] Proper inputs for a month and year
 - [ ] Header

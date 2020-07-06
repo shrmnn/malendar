@@ -10,20 +10,28 @@ const Day = React.memo((props) => {
 
   let styledDay = {
     background: `linear-gradient(180deg, rgba(0,0,0,0) 0%, #0E0E0E 105%), url(${
-        props.ani ? props.ani.image : ""
+      props.ani ? props.ani.image : ""
     }) center center no-repeat`,
   };
 
   return (
       <div
-          aria-label={`Anime is ${props.ani.title}, their airing date is ${props.ani.airing}`}
+          aria-label={
+            props.ani.id
+                ? `Anime is ${props.ani.title}, their airing date is ${props.ani.airing}`
+                : ""
+          }
           className={`day ${!props.ani.day ? "filledDay" : ""} ${
               props.id > props.ldm ? "hidden" : ""
           }`}
           style={props.ani.image ? styledDay : null}
           onClick={handleClicked}
       >
-        <div className="dayNum">
+        <div
+            className={`dayNum ${
+                parseInt(props.id) === props.today ? "today" : ""
+            }`}
+        >
           {props.ani.day
               ? props.ani.day.toString().padStart(2, "0")
               : props.id <= props.ldm

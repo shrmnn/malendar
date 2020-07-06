@@ -1,10 +1,12 @@
-const API = "https://private-anon-98ba329006-jikan.apiary-proxy.com/v3/";
-//const API = "https://api.codetabs.com/v1/proxy?quest=https://api.jikan.moe/v3/";
+//const API = "https://private-anon-98ba329006-jikan.apiary-proxy.com/v3/";
+const API = "https://api.jikan.moe/v3/";
+const PROXY = "https://api.allorigins.win/raw?url=";
+//const PROXY = "";
 
 export let titlelist = [];
 
 const getSeason = async (year, season) => {
-  const response = await fetch(`${API}season/${year}/${season}/`)
+  const response = await fetch(`${PROXY}${API}season/${year}/${season}/`)
       //const response = await fetch(`${API}season/`)
       .then((res) => {
         //console.log(res);
@@ -17,7 +19,7 @@ const getSeason = async (year, season) => {
         }
         return res;
       });
-  //.catch(error => console.error('error blin'));
+  //console.log(`Fetching ${PROXY}${API}season/${year}/${season}/`);
 
   const resJSON = await response.json();
   return resJSON["anime"];
