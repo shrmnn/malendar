@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "362d4f51e75cc47f40843231fb03c79b",
+    "revision": "24295adab9b163562c0f4f7f17bd9d5a",
     "url": "/malendar/index.html"
   },
   {
-    "revision": "d2cf102efc268a8f7238",
-    "url": "/malendar/static/css/main.367bc697.chunk.css"
+    "revision": "fd530853c938aa99ae1b",
+    "url": "/malendar/static/css/main.939327fb.chunk.css"
   },
   {
     "revision": "ea3a9864c061ea4aa442",
@@ -16,15 +16,15 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/malendar/static/js/2.274fedde.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "d2cf102efc268a8f7238",
-    "url": "/malendar/static/js/main.fce7ac92.chunk.js"
+    "revision": "fd530853c938aa99ae1b",
+    "url": "/malendar/static/js/main.7149a139.chunk.js"
   },
   {
     "revision": "123418e687fc7ea567f8",
     "url": "/malendar/static/js/runtime-main.ed17ac73.js"
   },
   {
-    "revision": "cd7cff82cca2e052d5873e55e29c781a",
-    "url": "/malendar/static/media/arrow.cd7cff82.svg"
+    "revision": "8168175f1200feaf398171dc1b31386a",
+    "url": "/malendar/static/media/arrow.8168175f.svg"
   }
 ]);
