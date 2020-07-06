@@ -1,24 +1,23 @@
 {
   "files": {
-    "main.css": "/malendar/static/css/main.e9f0fa39.chunk.css",
-    "main.js": "/malendar/static/js/main.ae744ea2.chunk.js",
-    "main.js.map": "/malendar/static/js/main.ae744ea2.chunk.js.map",
-    "runtime-main.js": "/malendar/static/js/runtime-main.0b314e23.js",
-    "runtime-main.js.map": "/malendar/static/js/runtime-main.0b314e23.js.map",
-    "static/js/2.8c129895.chunk.js": "/malendar/static/js/2.8c129895.chunk.js",
-    "static/js/2.8c129895.chunk.js.map": "/malendar/static/js/2.8c129895.chunk.js.map",
-    "static/js/3.d6270fd8.chunk.js": "/malendar/static/js/3.d6270fd8.chunk.js",
-    "static/js/3.d6270fd8.chunk.js.map": "/malendar/static/js/3.d6270fd8.chunk.js.map",
+    "main.css": "/malendar/static/css/main.367bc697.chunk.css",
+    "main.js": "/malendar/static/js/main.01ef49f9.chunk.js",
+    "main.js.map": "/malendar/static/js/main.01ef49f9.chunk.js.map",
+    "runtime-main.js": "/malendar/static/js/runtime-main.ed17ac73.js",
+    "runtime-main.js.map": "/malendar/static/js/runtime-main.ed17ac73.js.map",
+    "static/js/2.274fedde.chunk.js": "/malendar/static/js/2.274fedde.chunk.js",
+    "static/js/2.274fedde.chunk.js.map": "/malendar/static/js/2.274fedde.chunk.js.map",
     "index.html": "/malendar/index.html",
-    "precache-manifest.8f070b87faef45e7c1297c5454f18593.js": "/malendar/precache-manifest.8f070b87faef45e7c1297c5454f18593.js",
+    "precache-manifest.2f3b1657f99eef66f1ab686216cc5010.js": "/malendar/precache-manifest.2f3b1657f99eef66f1ab686216cc5010.js",
     "service-worker.js": "/malendar/service-worker.js",
-    "static/css/main.e9f0fa39.chunk.css.map": "/malendar/static/css/main.e9f0fa39.chunk.css.map",
-    "static/js/2.8c129895.chunk.js.LICENSE.txt": "/malendar/static/js/2.8c129895.chunk.js.LICENSE.txt"
+    "static/css/main.367bc697.chunk.css.map": "/malendar/static/css/main.367bc697.chunk.css.map",
+    "static/js/2.274fedde.chunk.js.LICENSE.txt": "/malendar/static/js/2.274fedde.chunk.js.LICENSE.txt",
+    "static/media/arrow.svg": "/malendar/static/media/arrow.cd7cff82.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.0b314e23.js",
-    "static/js/2.8c129895.chunk.js",
-    "static/css/main.e9f0fa39.chunk.css",
-    "static/js/main.ae744ea2.chunk.js"
+    "static/js/runtime-main.ed17ac73.js",
+    "static/js/2.274fedde.chunk.js",
+    "static/css/main.367bc697.chunk.css",
+    "static/js/main.01ef49f9.chunk.js"
   ]
 }
