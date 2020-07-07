@@ -1,8 +1,30 @@
+:root {
+    --color-page-background: 14 14 14;
+    --color-text: 255 255 255;
+    --invert-color: 23 51 115;
+}
+
+.blue {
+    --color-page-background: 23 51 115;
+    --color-text: 255 255 255;
+    --invert-color: 14 14 14;
+}
+
+.red {
+    --color-page-background: 249 63 50;
+    --color-text: 255 255 255;
+}
+
+.light {
+    --color-page-background: 248 249 250;
+    --color-text: 14 14 14;
+}
+
 .App {
     text-align: center;
     min-height: 100%;
-    background: #0E0E0E;
-    color: #fff;
+    background: rgb(var(--color-page-background));
+    color: rgb(var(--color-text));
     width: 100%;
     display: flex;
     align-items: center;

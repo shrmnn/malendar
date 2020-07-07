@@ -1,10 +1,33 @@
 @import "colors";
 
+:root {
+  --color-page-background: #{$base-color};
+  --color-text: #{$text-color};
+  --invert-color: #{$blue};
+}
+
+.blue {
+  --color-page-background: #{$blue};
+  --color-text: #{$text-color};
+  --invert-color: #{$base-color};
+}
+
+.red {
+  --color-page-background: #{$red};
+  --color-text: #{$text-color};
+}
+
+.light {
+  --color-page-background: #{$white};
+  --color-text: #{$base-color};
+}
+
 .App {
   text-align: center;
   min-height: 100%;
-  background: $base-color;
-  color: $text-color;
+
+  background: rgb(var(--color-page-background));
+  color: rgb(var(--color-text));
 
   width: 100%;
 

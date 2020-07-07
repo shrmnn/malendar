@@ -1,7 +1,6 @@
-//const API = "https://private-anon-98ba329006-jikan.apiary-proxy.com/v3/";
-const API = "https://api.jikan.moe/v3/";
-const PROXY = "https://api.allorigins.win/raw?url=";
-//const PROXY = "";
+//const API = "https://api.jikan.moe/v3/";
+const API = process.env.REACT_APP_API;
+const PROXY = "";
 
 export let titlelist = [];
 
@@ -67,7 +66,7 @@ const getAnimelist = (anime, month, year) => {
     animelist[el] = {
       id: animelist[el].mal_id,
       title: animelist[el].title,
-      airing: animelist[el].airing_start,
+      airing: convertToJapanTime(animelist[el].airing_start),
       image: animelist[el].image_url,
       studio: animelist[el].producers[0],
     };
@@ -104,18 +103,22 @@ export const getLastDayOfMonth = (month, year) => {
   ).getDate();
 };
 
+const convertToJapanTime = (time) => {
+  return new Date(time).toLocaleString("en-US", {timeZone: "Japan"});
+};
+
 const getAnimeByMonth = (month, year) => {
   let animelist = [...titlelist];
   let newlist = [];
-  //newlist.length = getLastDayOfMonth(month, year);
-  newlist.length = 35;
+  newlist.length = getLastDayOfMonth(month, year);
   newlist = fillNewList(newlist, month, year);
-  //console.log("newlist is", newlist);
 
   let firstDayOfMonth = new Date(`01 ${month} ${year}`).getTime();
   let lastDayOfMonth = new Date(
       `${getLastDayOfMonth(month, year)} ${month} ${year}`
   ).getTime();
+
+  //console.log(firstDayOfMonth, lastDayOfMonth);
 
   animelist.forEach((a, index) => {
     let currentDate = new Date(a.airing).getTime();
@@ -123,7 +126,7 @@ const getAnimeByMonth = (month, year) => {
     if (currentDate <= lastDayOfMonth && currentDate >= firstDayOfMonth) {
       //console.log(firstDayOfMonth, currentDate, lastDayOfMonth);
       //console.log(a, "a.airing is true");
-      a.day = new Date(a.airing).getDate() + 1;
+      a.day = new Date(a.airing).getDate();
       newlist[a.day - 1] = a;
       return true;
     }

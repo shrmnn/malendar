@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import "./container.css";
+import "./grid_container.css";
 import Day from "./day";
 import animeScissors, {getLastDayOfMonth, titlelist} from "../api/getanime";
 import arrow from "../graphics/arrow.svg";
@@ -13,8 +13,9 @@ const Container = () => {
   useEffect(() => {
     (async function xd() {
       setLoadingState(true);
-      setErrorState([false]);
-      console.log(`year: ${date.year} and month: ${date.month}`);
+      document.body.classList.add("--overflow");
+      setErrorState({error: false, code: ""});
+
       try {
         await animeScissors(
             date.year,
@@ -29,6 +30,7 @@ const Container = () => {
 
       document.title = `malendar for ${date.month} ${date.year}`;
       setLoadingState(false);
+      document.body.classList.remove("--overflow");
     })();
   }, [date]);
 
@@ -72,7 +74,6 @@ const Container = () => {
 
   const monthClick = () => {
     let month = getRandomMonth();
-
     setDate({...date, month});
     console.log("Current season is", getSeasonByMonth(date.month));
   };
@@ -135,16 +136,21 @@ const Container = () => {
 };
 
 const Loading = (props) => (
-    <div aria-label="loading..." className="loading">
+    <div aria-label="loading..." className="Loading">
       {props.error.error ? `Error has occurred(╥﹏╥)` : "(っ◔◡◔)っ 🍥"}
       {props.error.code ? console.log(props.error.code) : null}
     </div>
 );
 
 const HeadMenu = (props) => (
-    <div aria-label="head navigation" className="Head-Container">
-      <div className="Date-nav">
-        <button className="button" onClick={props.changeDate.bind(this, -1)}>
+    <div aria-label="head navigation" className="HeadContainer">
+      <div className="HeadContainer__DateNav">
+        <button
+            tabIndex="0"
+            className="HeadContainer__Button"
+            onClick={props.changeDate.bind(this, -1)}
+            title="Previous month"
+        >
           <img
               alt="back-arrow"
               style={{transform: `rotate(180deg)`}}
@@ -154,29 +160,38 @@ const HeadMenu = (props) => (
 
         <div
             aria-label="select month"
-            className="dateMonth padding-left"
+            className="HeadContainer__DateNav_DateMonth"
             onClick={props.monthClick}
+            title="Click for random month"
         >
           {props.date.month}
         </div>
         <div
             aria-label="select year"
-            className="dateYear padding-right"
+            className="HeadContainer__DateNav_DateYear"
             onClick={props.yearClick}
+            title="Click for random year"
         >
           {props.date.year}
         </div>
 
-        <button className="button" onClick={props.changeDate.bind(this, 1)}>
+        <button
+            tabIndex="0"
+            className="HeadContainer__Button"
+            onClick={props.changeDate.bind(this, 1)}
+            title="Next month"
+        >
           <img alt="fur-arrow" src={arrow}/>
         </button>
       </div>
       <div
           aria-label="select if you want to see ongoing or new releases"
-          className="Release-nav"
+          className="HeadContainer__ReleaseNav"
       >
         <div className="padding-left">Ongoing</div>
-        <div className="padding-right active">New releases</div>
+        <div className="padding-right HeadContainer__ReleaseNav--active">
+          New releases
+        </div>
       </div>
     </div>
 );

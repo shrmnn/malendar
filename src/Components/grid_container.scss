@@ -1,87 +1,85 @@
 @import "../colors";
 
 .Container {
-  //height: Calc(100vh - 80px);
-  //height: 100vh;
-  min-height: Calc(100vh - 80px);
   width: 100%;
 
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-gap: 5px;
+
 }
 
-.hidden {
+.--hidden {
   opacity: 0;
 }
 
-.Head-Container {
-  display: flex;
-  flex-direction: column;
+.--overflow {
+  overflow: hidden;
+}
+
+.HeadContainer {
+  display: grid;
+  grid-template-columns: 1fr;
   width: 100%;
 
   user-select: none;
 
   transition: 0.3s ease-in-out;
 
-  .padding-left {
-    padding: 0 5px 0 0;
-  }
+  .HeadContainer__DateNav {
+    display: grid;
+    grid-template-columns: repeat(4, max-content);
+    grid-auto-rows: 84px;
+    grid-gap: 5px;
+    //grid-template-rows: 1fr;
 
-  .padding-right {
-    padding: 0 0 0 5px;
-  }
 
-  .Date-nav {
-
-    display: flex;
-    flex-direction: row;
-
-    .dateMonth {
+    .HeadContainer__DateNav_DateMonth {
       font-style: normal;
       font-weight: normal;
       font-size: 72px;
       line-height: 84px;
-      display: flex;
-      justify-content: flex-start;
-      align-items: flex-end;
+      display: grid;
+      justify-content: start;
+      align-items: end;
 
       cursor: pointer;
 
     }
 
-    .dateYear {
+    .HeadContainer__DateNav_DateYear {
       font-style: normal;
       font-weight: 200;
       font-size: 55px;
       line-height: 69px;
-      display: flex;
-      align-items: flex-end;
+      display: grid;
+      align-items: end;
       text-align: right;
 
       cursor: pointer;
     }
 
-    .button {
+    .HeadContainer__Button {
       padding: 0;
       background: initial;
-      color: $text-color;
-      font-size: 50px;
+      color: rgb($text-color);
       border: none;
+      cursor: pointer;
 
       &:focus {
         outline: none;
       }
 
       img {
-        height: 50%;
+        height: 40%;
         filter: invert(1);
       }
     }
   }
 
-  .Release-nav {
-    display: flex;
-    flex-direction: row;
+  .HeadContainer__ReleaseNav {
+    display: grid;
+    grid-template-columns: max-content max-content;
+    grid-gap: 5px;
 
 
     font-size: 24px;
@@ -89,46 +87,44 @@
 
     font-weight: 200;
 
-    .active {
+    .HeadContainer__ReleaseNav--active {
       font-weight: normal;
     }
   }
 
 }
 
-
 .Days {
   //height: 100%;
   width: 100%;
-  display: flex;
-  flex: 1 0 auto;
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 15%));
+  //grid-template-rows: minmax(125px, 150px);
+  grid-gap: 12px;
+  grid-auto-rows: minmax(125px, 160px);
+  grid-auto-columns: minmax(0, 13%);
 
-  flex-direction: row;
-  flex-wrap: wrap;
+  color: rgb($text-color);
+
   align-content: space-around;
   justify-content: space-between;
 
   padding: 5px 0 5px 0;
 
-  .day {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  .Days__Day {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 3fr 1fr;
+
+
     cursor: pointer;
 
-    width: 13%;
-    min-width: auto;
-    height: Calc(125px + 24px);
-    min-height: 125px;
-    //margin: 24px auto auto 0;
-    margin: 8px 4px 8px 4px;
     border-radius: 16px;
 
     filter: drop-shadow(0 0 0.75rem rgba(255, 255, 255, 5%));
 
-    background: rgba(255, 255, 255, 5%);
+    background: rgba(255, 255, 255, 0.05);
     background-size: cover !important;
-
 
     transition: transform .2s;
 
@@ -137,8 +133,8 @@
       filter: drop-shadow(0 0 0.75rem rgba(255, 255, 255, 15%));
     }
 
-    .dayNum {
-      display: flex;
+    .Days__Day_DayNum {
+      display: grid;
       justify-content: center;
       //background: $base-color;
       background: rgba(77, 77, 77, 33%);
@@ -151,49 +147,55 @@
       width: 2rem;
       height: 2rem;
       line-height: 2rem;
-      margin: 6px 0 0 6px;
+      margin: 6px;
 
       user-select: none;
 
     }
 
-    .today {
+    .Days__Day_DayNum--mToday {
       background-color: rgba(63, 127, 191, 65%);
     }
 
-    .dayTitle {
+    .Days__Day_CardTitle {
+      display: grid;
+      align-items: center;
+      text-align: left;
+
+      padding: 0 5px 5px 10px;
+    }
+
+    .Days__Day_CardTitle--DayTitle {
       font-style: normal;
       font-weight: 500;
       font-size: Calc(0.05vw + 12px);
       line-height: Calc(0.2vw + 12px);
-      display: flex;
-      align-items: center;
-      text-align: left;
 
-      padding: 0 5px 5px 5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: .2s linear;
+
+
+      &:hover {
+        white-space: unset;
+        overflow: unset;
+        text-overflow: unset;
+      }
+
     }
 
-    .daySubtitle {
+    .Days__Day_CardTitle--DaySubtitle {
       font-style: italic;
       font-weight: 200;
       font-size: Calc(0.1vw + 10px);
       line-height: Calc(0.2vw + 10px);
-      display: flex;
-      align-items: center;
-      text-align: left;
-      padding: 0 5px 5px 15px;
+
     }
 
-    &:nth-child(7n) {
-      margin-right: 0;
-    }
-
-    &:nth-child(7n-6) {
-      margin-left: 0;
-    }
   }
 
-  .filledDay {
+  .Days__Day--filledDay {
     cursor: default;
 
     &:hover {
@@ -203,7 +205,7 @@
 
 }
 
-.loading {
+.Loading {
   width: 100%;
   height: 100%;
 
@@ -216,48 +218,45 @@
   align-content: center;
   align-items: center;
 
-  background: $base-color;
+  background: rgb(var(--color-page-background));
 
   font-size: 6vw;
   text-align: center;
-  //line-height: 100%;
-  filter: grayscale(100%);
+  //filter: grayscale(100%);
 
   transition: .2s ease-in-out;
 
-  overflow: hidden;
+  //overflow: hidden;
   user-select: none;
   z-index: 999;
 }
 
 @media (max-width: 1024px) {
   .Days {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 16px;
+    grid-auto-rows: minmax(200px, 40vh);
 
-    .filledDay {
+    .Days__Day--filledDay {
       display: none;
     }
 
-    .day {
-      width: 30%;
-      height: 40vh;
-
-      min-height: 200px;
-
-      .dayNum {
+    .Days__Day {
+      .Days__Day_DayNum {
         font-size: 2rem;
         line-height: 3rem;
         width: 3rem;
         height: 3rem;
       }
 
-      .dayTitle {
+      .Days__Day_CardTitle--DayTitle {
         //font-size: 3vw;
         font-size: Calc(1vw + 12px);
         line-height: 4vw;
       }
 
-      .daySubtitle {
+      .Days__Day_CardTitle--DaySubtitle {
         font-size: Calc(1vw + 10px);
         line-height: 3vw;
       }
@@ -269,14 +268,27 @@
   }
 }
 
-
 @media (max-width: 700px) {
-  .Days {
-    flex-direction: column;
+  .HeadContainer {
+    .HeadContainer__DateNav {
+      .HeadContainer__DateNav_DateMonth {
+        font-size: 45px;
+        line-height: 55px;
+      }
 
-    .day {
-      width: 100%;
-      height: 40vh;
+      .HeadContainer__DateNav_DateYear {
+        font-size: 36px;
+        line-height: 49px;
+      }
+    }
+  }
+
+  .Days {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 16px;
+
+    .Days__Day {
       border-radius: 20px;
     }
   }

@@ -11,7 +11,7 @@
   align-content: center;
   color: $text-color;
 
-  .footerRight {
+  .Footer__Right {
     display: flex;
     flex-direction: row;
     align-content: center;
@@ -23,24 +23,32 @@
 
   }
 
-  .footerLeft {
+  .Footer__Left {
     height: 100%;
     width: 50%;
 
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: repeat(3, max-content);
+    grid-gap: 16px;
     align-content: center;
     align-items: center;
     justify-content: flex-end;
     text-align: end;
 
     .marker {
-      padding: 0 16px 0 16px;
       font-size: 32px;
     }
 
+    border: 0;
 
-    border: 0px;
+    .Footer__Left--github {
+      filter: invert(1);
+    }
+
+    .Footer__Left--toggled {
+      transform: rotate(180deg);
+      filter: grayscale(1);
+    }
 
     a {
       text-decoration: none;
@@ -48,8 +56,8 @@
 
     img {
       display: block;
-      fill: $text-color;
-      filter: invert(1);
+      fill: rgb($text-color);
+
     }
   }
 }
