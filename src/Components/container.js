@@ -6,15 +6,15 @@ import arrow from "../graphics/arrow.svg";
 
 const Container = () => {
   const [titles, setTitles] = useState([titlelist]);
-  const [date, setDate] = useState({month: "July", year: 2020});
-  const [isLoading, setLoadingState] = useState(false);
-  const [isError, setErrorState] = useState({error: false, code: ""});
+    const [date, setDate] = useState({month: "July", year: 2020});
+    const [isLoading, setLoadingState] = useState(false);
+    const [isError, setErrorState] = useState({error: false, code: ""});
 
   useEffect(() => {
     (async function xd() {
       setLoadingState(true);
-      document.body.classList.add("--overflow");
-      setErrorState({error: false, code: ""});
+        document.body.classList.add("--overflow");
+        setErrorState({error: false, code: ""});
 
       try {
         await animeScissors(
@@ -25,7 +25,7 @@ const Container = () => {
         console.log("titlelist had updated!");
         await setTitles((titles) => (titles = [...titlelist]));
       } catch (error) {
-        setErrorState({error: true, code: error});
+          setErrorState({error: true, code: error});
       }
 
       document.title = `malendar for ${date.month} ${date.year}`;
@@ -74,12 +74,12 @@ const Container = () => {
 
   const monthClick = () => {
     let month = getRandomMonth();
-    setDate({...date, month});
-    console.log("Current season is", getSeasonByMonth(date.month));
+      setDate({...date, month});
+      console.log("Current season is", getSeasonByMonth(date.month));
   };
 
   const yearClick = (e) => {
-    setDate({...date, year: Math.ceil(Math.random() * 10) + 2010});
+      setDate({...date, year: Math.ceil(Math.random() * 10) + 2010});
   };
 
   const changeDate = (direction) => {
@@ -100,9 +100,9 @@ const Container = () => {
     console.log("hey there what about ", date.month, date.year);
 
     if (date.month === "January" && direction < 0) {
-      setDate({month: "December", year: date.year - 1});
+        setDate({month: "December", year: date.year - 1});
     } else if (date.month === "December" && direction > 0) {
-      setDate({month: "January", year: date.year + 1});
+        setDate({month: "January", year: date.year + 1});
     } else {
       setDate({
         ...date,
@@ -113,86 +113,86 @@ const Container = () => {
 
   return (
       <main className="Container">
-        <HeadMenu
-            monthClick={monthClick}
-            yearClick={yearClick}
-            date={date}
-            changeDate={changeDate}
-        />
-        <div className={`Days`}>
-          {isLoading || isError.error ? <Loading error={isError}/> : null}
-          {titles.map((el, i) => (
-              <Day
-                  id={(i + 1).toString().padStart(2, "0")}
-                  key={i}
-                  ani={titles[i]}
-                  ldm={getLastDayOfMonth(date.month, date.year)}
-                  today={new Date().getDate()}
-              />
-          ))}
-        </div>
+          <HeadMenu
+              monthClick={monthClick}
+              yearClick={yearClick}
+              date={date}
+              changeDate={changeDate}
+          />
+          <div className={`Days`}>
+              {isLoading || isError.error ? <Loading error={isError}/> : null}
+              {titles.map((el, i) => (
+                  <Day
+                      id={(i + 1).toString().padStart(2, "0")}
+                      key={i}
+                      ani={titles[i]}
+                      ldm={getLastDayOfMonth(date.month, date.year)}
+                      today={new Date().getDate()}
+                  />
+              ))}
+          </div>
       </main>
   );
 };
 
 const Loading = (props) => (
     <div aria-label="loading..." className="Loading">
-      {props.error.error ? `Error has occurred(╥﹏╥)` : "(っ◔◡◔)っ 🍥"}
-      {props.error.code ? console.log(props.error.code) : null}
+        {props.error.error ? `Error has occurred(╥﹏╥)` : "(っ◔◡◔)っ 🍥"}
+        {props.error.code ? console.log(props.error.code) : null}
     </div>
 );
 
 const HeadMenu = (props) => (
     <div aria-label="head navigation" className="HeadContainer">
-      <div className="HeadContainer__DateNav">
-        <button
-            tabIndex="0"
-            className="HeadContainer__Button"
-            onClick={props.changeDate.bind(this, -1)}
-            title="Previous month"
-        >
-          <img
-              alt="back-arrow"
-              style={{transform: `rotate(180deg)`}}
-              src={arrow}
-          />
-        </button>
+        <div className="HeadContainer__DateNav">
+            <button
+                tabIndex="0"
+                className="HeadContainer__Button"
+                onClick={props.changeDate.bind(this, -1)}
+                title="Previous month"
+            >
+                <img
+                    alt="back-arrow"
+                    style={{transform: `rotate(180deg)`}}
+                    src={arrow}
+                />
+            </button>
 
-        <div
-            aria-label="select month"
-            className="HeadContainer__DateNav_DateMonth"
-            onClick={props.monthClick}
-            title="Click for random month"
-        >
-          {props.date.month}
-        </div>
-        <div
-            aria-label="select year"
-            className="HeadContainer__DateNav_DateYear"
-            onClick={props.yearClick}
-            title="Click for random year"
-        >
-          {props.date.year}
-        </div>
+            <div
+                aria-label="select month"
+                className="HeadContainer__DateNav_DateMonth"
+                onClick={props.monthClick}
+                title="Click for random month"
+            >
+                {props.date.month}
+            </div>
+            <div
+                aria-label="select year"
+                className="HeadContainer__DateNav_DateYear"
+                onClick={props.yearClick}
+                title="Click for random year"
+            >
+                {props.date.year}
+            </div>
 
-        <button
-            tabIndex="0"
-            className="HeadContainer__Button"
-            onClick={props.changeDate.bind(this, 1)}
-            title="Next month"
-        >
-          <img alt="fur-arrow" src={arrow}/>
-        </button>
-      </div>
-      <div
-          aria-label="select if you want to see ongoing or new releases"
-          className="HeadContainer__ReleaseNav"
-      >
-        <div className="padding-left">Ongoing</div>
-        <div className="padding-right HeadContainer__ReleaseNav--active">
-          New releases
+            <button
+                tabIndex="0"
+                className="HeadContainer__Button"
+                onClick={props.changeDate.bind(this, 1)}
+                title="Next month"
+            >
+                <img alt="fur-arrow" src={arrow}/>
+            </button>
         </div>
-      </div>
+        <div
+            aria-label="select if you want to see ongoing or new releases"
+            className="HeadContainer__ReleaseNav"
+        >
+            <div className="padding-left">Ongoing</div>
+            <div className="padding-right HeadContainer__ReleaseNav--active">
+                New releases
+            </div>
+        </div>
     </div>
 );
 
