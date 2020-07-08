@@ -36,15 +36,16 @@
   filter: invert(1);
 }
 .Footer .Footer__Left .Footer__Left--toggled {
-  transform: rotate(180deg);
-  filter: grayscale(1);
+    transform: rotateY(180deg);
+    filter: grayscale(1);
 }
 .Footer .Footer__Left a {
   text-decoration: none;
 }
 .Footer .Footer__Left img {
-  display: block;
-  fill: white;
+    display: block;
+    fill: white;
+    transition: 0.3s linear;
 }
 
 /*# sourceMappingURL=footer.css.map */

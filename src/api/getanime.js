@@ -1,11 +1,13 @@
+import {month} from "./Date";
+
 //const API = "https://api.jikan.moe/v3/";
 const API = process.env.REACT_APP_API;
 const PROXY = "";
 
 export let titlelist = [];
 
-const getSeason = async (year, season) => {
-  const response = await fetch(`${PROXY}${API}season/${year}/${season}/`)
+const getSeason = async (cyear, season) => {
+  const response = await fetch(`${PROXY}${API}season/${cyear}/${season}/`)
       //const response = await fetch(`${API}season/`)
       .then((res) => {
         //console.log(res);
@@ -23,41 +25,8 @@ const getSeason = async (year, season) => {
   const resJSON = await response.json();
   return resJSON["anime"];
 };
-/*let images = [];*/
 
-/*const imageSaver = (image, el) => {
-    images[el] = image;
-    return images[el];
-}*/
-/*export const getLargeImages = async () => {
-    console.log('getLargeImages started!')
-    let animelist = [...titlelist];
-    for (const el in animelist) {
-        await sleep(500).then(async () => {
-            getAnimeImage(animelist[el].id)
-                .then(image => {
-                    animelist[el]['image'] = imageSaver(image, el);
-                    return image;
-                });
-        });
-    };
-    console.log('animelist in getLargeImages is ', animelist);
-    titlelist = animelist;
-    console.log(JSON.stringify(animelist) === JSON.stringify(titlelist));
-    console.log('getLargeImages finished!')
-    return titlelist;
-}*/
-/*const getAnimeImage = async (mal_id) => {
-    const image_url = await fetch( `${API}anime/${mal_id}/pictures/`)
-        .then(res => {
-            return res.json();
-        });
-    const image = image_url.pictures[0]['large'];
-    //console.log(image);
-    return image;
-}*/
-
-const getAnimelist = (anime, month, year) => {
+const getAnimelist = (anime, cmonth, cyear) => {
   let animelist = [];
   animelist.push(anime.map((el) => el));
   animelist = animelist[0];
@@ -66,56 +35,64 @@ const getAnimelist = (anime, month, year) => {
     animelist[el] = {
       id: animelist[el].mal_id,
       title: animelist[el].title,
-      airing: convertToJapanTime(animelist[el].airing_start),
-      image: animelist[el].image_url,
+      airing: month.convertToJapanTime(animelist[el].airing_start),
+      image: animelist[el].image_url.split(".jpg")[0] + "l.jpg",
       studio: animelist[el].producers[0],
+      members: animelist[el].members,
+      titleArray: [],
     };
   }
   titlelist = animelist;
-  sortAnime();
-  getAnimeByMonth(month, year);
+  getAnimeByMonth(cmonth, cyear);
 
   //console.log("getAnimelist is ", titlelist);
   return true;
 };
 
-const sortAnime = () => {
+const sortAnime = (sortBy) => {
   //console.log('sort has started!', titlelist);
   let animelist = [...titlelist];
 
-  animelist.sort((a, b) => {
-    if (a.airing > b.airing) {
-      return 1;
-    } else if (a.airing < b.airing) {
-      return -1;
-    } else return 0;
-  });
+  if (sortBy === 0) {
+    animelist.sort((a, b) => {
+      if (a.title > b.title) {
+        return 1;
+      } else if (a.title < b.title) {
+        return -1;
+      } else return 0;
+    });
+  } else if (sortBy === 1) {
+    animelist.sort((a, b) => {
+      if (a.members > b.members) {
+        return 1;
+      } else if (a.members < b.members) {
+        return -1;
+      } else return 0;
+    });
+  } else {
+    animelist.sort((a, b) => {
+      if (a.airing > b.airing) {
+        return 1;
+      } else if (a.airing < b.airing) {
+        return -1;
+      } else return 0;
+    });
+  }
 
   titlelist = [...animelist];
-  //console.log('sort is finished!', titlelist);
+  //console.log("sort is finished!", titlelist);
 };
 
-export const getLastDayOfMonth = (month, year) => {
-  return new Date(
-      year,
-      new Date(`01 ${month} ${year}`).getMonth() + 1,
-      0
-  ).getDate();
-};
-
-const convertToJapanTime = (time) => {
-  return new Date(time).toLocaleString("en-US", {timeZone: "Japan"});
-};
-
-const getAnimeByMonth = (month, year) => {
-  let animelist = [...titlelist];
+const getAnimeByMonth = (cmonth, cyear) => {
+  sortAnime(1);
+  let animelist = [...titlelist].reverse();
   let newlist = [];
-  newlist.length = getLastDayOfMonth(month, year);
-  newlist = fillNewList(newlist, month, year);
+  newlist.length = month.getLastDayOfMonth(cmonth, cyear);
+  newlist = fillNewList(newlist, cmonth, cyear);
 
-  let firstDayOfMonth = new Date(`01 ${month} ${year}`).getTime();
+  let firstDayOfMonth = new Date(`01 ${cmonth} ${cyear}`).getTime();
   let lastDayOfMonth = new Date(
-      `${getLastDayOfMonth(month, year)} ${month} ${year}`
+      `${month.getLastDayOfMonth(cmonth, cyear)} ${cmonth} ${cyear}`
   ).getTime();
 
   //console.log(firstDayOfMonth, lastDayOfMonth);
@@ -127,7 +104,15 @@ const getAnimeByMonth = (month, year) => {
       //console.log(firstDayOfMonth, currentDate, lastDayOfMonth);
       //console.log(a, "a.airing is true");
       a.day = new Date(a.airing).getDate();
-      newlist[a.day - 1] = a;
+
+      if (newlist[a.day - 1].id) {
+        //console.log("temporal newlist is", newlist);
+        newlist[a.day - 1]["multi"] = true;
+        newlist[a.day - 1].titleArray.push(a);
+      } else {
+        newlist[a.day - 1] = a;
+      }
+
       return true;
     }
     return false;
@@ -137,30 +122,32 @@ const getAnimeByMonth = (month, year) => {
   titlelist = [...newlist];
 };
 
-const fillNewList = (newlist, month, year) => {
+const fillNewList = (newlist) => {
   let dumbTitle = {
     id: "",
     title: "",
     airing: "",
     image: "",
     studio: {name: ""},
+    multi: false,
+    titleArray: [],
   };
 
   let animelist = [...newlist];
   animelist.fill(dumbTitle, 0, animelist.length);
   /*console.log(
-    "Filled list is ",
-    animelist
-  );*/
+        "Filled list is ",
+        animelist
+      );*/
   return animelist;
 };
 
-const animeScissors = async (year, season, month) => {
+const animeScissors = async (cyear, season, cmonth) => {
   //console.log(`${API}season/${year}/${season}/`);
-  let animeJSON = await getSeason(year, season);
+  let animeJSON = await getSeason(cyear, season);
   //console.log(animeJSON);
   //let result = await getAnimelist(animeJSON);
-  return await getAnimelist(animeJSON, month, year);
+  return await getAnimelist(animeJSON, cmonth, cyear);
 };
 
 /*const sleep = (milliseconds) => {

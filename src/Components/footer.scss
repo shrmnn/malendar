@@ -35,6 +35,7 @@
     justify-content: flex-end;
     text-align: end;
 
+
     .marker {
       font-size: 32px;
     }
@@ -46,7 +47,7 @@
     }
 
     .Footer__Left--toggled {
-      transform: rotate(180deg);
+      transform: rotateY(180deg);
       filter: grayscale(1);
     }
 
@@ -57,6 +58,7 @@
     img {
       display: block;
       fill: rgb($text-color);
+      transition: .3s linear;
 
     }
   }

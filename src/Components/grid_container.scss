@@ -101,8 +101,9 @@
   grid-template-columns: repeat(7, minmax(0, 15%));
   //grid-template-rows: minmax(125px, 150px);
   grid-gap: 12px;
-  grid-auto-rows: minmax(125px, 160px);
-  grid-auto-columns: minmax(0, 13%);
+  //grid-auto-rows: minmax(125px, 160px);
+  //grid-auto-columns: minmax(0, 13%);
+  grid-auto-flow: row dense;
 
   color: rgb($text-color);
 
@@ -111,11 +112,17 @@
 
   padding: 5px 0 5px 0;
 
+  .Days__DayContainer {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: minmax(125px, 160px);
+
+  }
+
   .Days__Day {
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: 3fr 1fr;
-
 
     cursor: pointer;
 
@@ -124,7 +131,7 @@
     filter: drop-shadow(0 0 0.75rem rgba(255, 255, 255, 5%));
 
     background: rgba(255, 255, 255, 0.05);
-    background-size: cover !important;
+    //background-size: cover !important;
 
     transition: transform .2s;
 
@@ -133,11 +140,16 @@
       filter: drop-shadow(0 0 0.75rem rgba(255, 255, 255, 15%));
     }
 
+    .Days__Day_Notificators {
+      display: grid;
+      grid-template-columns: auto auto;
+    }
+
     .Days__Day_DayNum {
       display: grid;
       justify-content: center;
       //background: $base-color;
-      background: rgba(77, 77, 77, 33%);
+      background: rgba(77, 77, 77, 55%);
 
       border-radius: 50%;
       font-size: 1.2rem;
@@ -155,6 +167,18 @@
 
     .Days__Day_DayNum--mToday {
       background-color: rgba(63, 127, 191, 65%);
+    }
+
+    .Days__Day_DayNum--MultititleNotification {
+      display: grid;
+      justify-self: end;
+
+      border-radius: 5px;
+
+      background: rgba(0, 0, 0, 33%);
+      font-size: 1rem;
+      font-weight: 400;
+
     }
 
     .Days__Day_CardTitle {
@@ -203,6 +227,57 @@
     }
   }
 
+  .MultiDay__Header {
+
+    justify-self: start;
+    display: flex;
+    margin: 15px;
+    text-align: left;
+  }
+
+  .MultiDay__Titles {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 15%));
+    grid-gap: 12px;
+    padding: 15px;
+  }
+
+  .MultiDay {
+    background: rgb(0, 0, 0, 25%);
+    display: grid;
+    grid-template-rows: repeat(2, auto);
+
+    grid-gap: 12px;
+    grid-column: 1 / -1;
+
+    animation: multiday_start 800ms cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition: all .5s cubic-bezier(1, 0.885, 0.72, 1);
+
+    border-radius: 16px;
+
+    & > * {
+      animation: multiday_start 800ms cubic-bezier(0.215, 0.61, 0.355, 1);
+      transition: all .5s cubic-bezier(1, 0.885, 0.72, 1);
+    }
+
+    &::before {
+      opacity: 0;
+    }
+
+  }
+
+
+  @keyframes multiday_start {
+    from {
+      opacity: 0.01;
+      transform: translateY(-36px);
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
 }
 
 .Loading {
@@ -236,10 +311,21 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 16px;
-    grid-auto-rows: minmax(200px, 40vh);
+
+    .Days__DayContainer {
+      grid-template-rows: minmax(200px, 40vh);
+    }
 
     .Days__Day--filledDay {
       display: none;
+    }
+
+    .MultiDay__Titles {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: minmax(200px, 40vh);
+      grid-gap: 12px;
+      padding: 15px;
     }
 
     .Days__Day {
@@ -271,6 +357,8 @@
 @media (max-width: 700px) {
   .HeadContainer {
     .HeadContainer__DateNav {
+      grid-auto-rows: 55px;
+
       .HeadContainer__DateNav_DateMonth {
         font-size: 45px;
         line-height: 55px;
@@ -290,6 +378,13 @@
 
     .Days__Day {
       border-radius: 20px;
+    }
+
+    .MultiDay__Titles {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 12px;
+      padding: 15px;
     }
   }
 
