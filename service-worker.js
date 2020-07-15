@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/malendar/precache-manifest.34ef0a0cf95e36566dfdcf34fbc8080f.js"
+  "/malendar/precache-manifest.92c84c98e9668adfd3d1adade191fe06.js"
 );
 
 self.addEventListener('message', (event) => {
