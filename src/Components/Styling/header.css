@@ -8,6 +8,18 @@
     user-select: none;
 }
 
+.Header a {
+    text-decoration: none;
+}
+
+.Header a:active, .Header a:visited, .Header a:link, .Header a:hover {
+    color: inherit;
+}
+
+.Header .Header--active {
+    font-weight: bold;
+}
+
 .Logo {
     font-style: normal;
     font-weight: 200;

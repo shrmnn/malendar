@@ -1,0 +1,25 @@
+.News {
+    text-align: start;
+    min-height: calc(100vh - 80px);
+}
+
+.News h1 {
+    border-bottom: 1px solid white;
+}
+
+.News h2 {
+    border-bottom: 1px dotted white;
+    color: whitesmoke;
+}
+
+.News small {
+    background: rgba(255, 255, 255, 0.01);
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.About {
+    min-height: calc(100vh - 80px);
+}
+
+/*# sourceMappingURL=news.css.map */

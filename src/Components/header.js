@@ -1,21 +1,34 @@
 import React from "react";
-import "./header.css";
+import "./Styling/header.css";
+import {Link, NavLink} from "react-router-dom";
 
 const Header = () => {
     return (
         <header className="Header">
-            <div aria-label="Site logo" className="Logo">
+            <Link aria-label="Site logo" className="Logo" to="/malendar/">
                 <div className="Header__Logo--M">M</div>
                 C
-            </div>
-            <div className="Menu">
-                <div aria-label="Link to update feed" className="Menu" title="WIP">
+            </Link>
+            <nav className="Menu">
+                <NavLink
+                    aria-label="Link to update feed"
+                    className="Menu"
+                    to="/malendar/news"
+                    title="WIP"
+                    activeClassName="Header--active"
+                >
                     What's new
-                </div>
-                <div aria-label="Link to about page" className="Menu" title="WIP">
+                </NavLink>
+                <NavLink
+                    aria-label="Link to about page"
+                    className="Menu"
+                    to="/malendar/about"
+                    title="WIP"
+                    activeClassName="Header--active"
+                >
                     About
-                </div>
-            </div>
+                </NavLink>
+            </nav>
         </header>
     );
 };

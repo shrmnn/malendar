@@ -24,16 +24,16 @@ class Month {
     return rMonth;
   };
 
-  getSeasonByMonth = (month) => {
+  getSeasonByMonth = (cmonth) => {
     let season = "";
-    if (month === "January" || month === "February" || month === "March") {
+    if (cmonth === "January" || cmonth === "February" || cmonth === "March") {
       season = "winter";
-    } else if (month === "April" || month === "May" || month === "June") {
+    } else if (cmonth === "April" || cmonth === "May" || cmonth === "June") {
       season = "spring";
     } else if (
-        month === "July" ||
-        month === "August" ||
-        month === "September"
+        cmonth === "July" ||
+        cmonth === "August" ||
+        cmonth === "September"
     ) {
       season = "summer";
     } else season = "fall";
@@ -46,14 +46,15 @@ class Month {
   };
 
   getLastDayOfMonth = (cmonth, cyear) => {
-    return new Date(
+    let gldm = new Date(
         cyear,
         this.convertToLocale(
             "en-US",
             new Date(`${cmonth} 01 ${cyear}`)
-        ).getUTCMonth(),
+        ).getMonth() + 1,
         0
     ).getDate();
+    return gldm;
   };
 
   convertToLocale = (locale, time) => {
@@ -62,6 +63,13 @@ class Month {
 
   convertToJapanTime = (time) => {
     return new Date(time).toLocaleString("en-US", {timeZone: "Japan"});
+  };
+
+  getFirstWeekDayOfMonth = (cmonth, cyear) => {
+    let tempDate = new Date(
+        this.convertToLocale("en-US", `${cmonth} 01 ${cyear}`)
+    );
+    return tempDate.getDay();
   };
 }
 

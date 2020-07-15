@@ -20,6 +20,10 @@
     --color-text: 14 14 14;
 }
 
+html {
+    background: rgb(var(--color-page-background));
+}
+
 .App {
     text-align: center;
     min-height: 100%;

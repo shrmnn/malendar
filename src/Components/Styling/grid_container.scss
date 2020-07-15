@@ -1,10 +1,11 @@
-@import "../colors";
+@import "../../colors";
 
 .Container {
   width: 100%;
+  min-height: Calc(100vh - 80px);
 
   display: grid;
-  grid-gap: 5px;
+  grid-gap: 15px;
 
 }
 
@@ -27,7 +28,7 @@
 
   .HeadContainer__DateNav {
     display: grid;
-    grid-template-columns: repeat(4, max-content);
+    grid-template-columns: repeat(4, minmax(40px, max-content));
     grid-auto-rows: 84px;
     grid-gap: 5px;
     //grid-template-rows: 1fr;
@@ -92,6 +93,29 @@
     }
   }
 
+  & a {
+    text-decoration: none;
+  }
+
+  & a:active, a:visited, a:link, a:hover {
+    color: inherit;
+  }
+}
+
+.Days__WeekDays {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 15%));
+  grid-gap: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  align-items: center;
+  justify-items: center;
+
+  li {
+    float: left;
+  }
 }
 
 .Days {
@@ -110,7 +134,10 @@
   align-content: space-around;
   justify-content: space-between;
 
-  padding: 5px 0 5px 0;
+  padding: 0;
+  margin: -10px 0 0 0;
+
+  list-style: none;
 
   .Days__DayContainer {
     display: grid;
@@ -293,7 +320,8 @@
   align-content: center;
   align-items: center;
 
-  background: rgb(var(--color-page-background));
+  //background: rgba((var(--color-page-background)), 0.5);
+  background: rgba(#000, 0.888);
 
   font-size: 6vw;
   text-align: center;
@@ -307,6 +335,10 @@
 }
 
 @media (max-width: 1024px) {
+  .Days__WeekDays {
+    display: none;
+  }
+
   .Days {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -355,6 +387,9 @@
 }
 
 @media (max-width: 700px) {
+  .Days__WeekDays {
+    display: none;
+  }
   .HeadContainer {
     .HeadContainer__DateNav {
       grid-auto-rows: 55px;

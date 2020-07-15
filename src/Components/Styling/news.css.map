@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "sourceRoot": "",
+  "sources": [
+    "news.scss"
+  ],
+  "names": [],
+  "mappings": "AAAA;EACE;EACA;;AAEA;EACE;;AAGF;EACE;EACA;;AAGF;EACE;EACA;EACA;;;AAIJ;EACE",
+  "file": "news.css"
+}

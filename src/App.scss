@@ -22,6 +22,10 @@
   --color-text: #{$base-color};
 }
 
+html {
+  background: rgb(var(--color-page-background));
+}
+
 .App {
   text-align: center;
   min-height: 100%;
