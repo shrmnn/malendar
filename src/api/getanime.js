@@ -10,6 +10,7 @@ const PROXY = "";
 
 class AnimeAPI {
   titlelist = [];
+  animecontroller = new AbortController();
 
   animeScissors = async (cyear, season, cmonth) => {
     //console.log(`${API}season/${year}/${season}/`);
@@ -20,24 +21,27 @@ class AnimeAPI {
   };
 
   getSeason = async (cyear, season) => {
-    const response = await fetch(`${PROXY}${API}season/${cyear}/${season}/`)
-        //const response = await fetch(`${PROXY}${API}schedule/`)
-        //const response = await fetch(`${API}season/`)
-        .then((res) => {
-          //console.log(res);
-          if (res.status === 429) {
-            console.log("Too many requests!");
-          }
-          //console.log('response is ', res);
-          if (!res.ok) {
-            console.error("Could not fetch!");
-          }
-          return res;
-        });
-    //console.log(`Fetching ${PROXY}${API}season/${year}/${season}/`);
+    //setTimeout(() => this.animecontroller.abort(), 10000);
+    const signal = this.animecontroller.signal;
 
-    const resJSON = await response.json();
-    return resJSON["anime"];
+    try {
+      const response = await fetch(`${PROXY}${API}season/${cyear}/${season}/`, {
+        signal,
+      }).then((res) => {
+        if (res.status === 429) {
+          console.log("Too many requests!");
+        }
+        if (!res.ok) {
+          console.error("Could not fetch!");
+        }
+        return res;
+      });
+      const resJSON = await response.json();
+      return resJSON["anime"];
+    } catch (e) {
+      console.log(e);
+      return null;
+    }
   };
 
   getAnimelist = (anime, cmonth, cyear) => {
@@ -152,9 +156,9 @@ class AnimeAPI {
     let animelist = [...newlist];
     animelist.fill(dumbTitle, 0, animelist.length);
     /*console.log(
-              "Filled list is ",
-              animelist
-            );*/
+                      "Filled list is ",
+                      animelist
+                    );*/
     return animelist;
   };
 }

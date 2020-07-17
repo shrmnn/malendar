@@ -6,7 +6,7 @@
     justify-content: space-between;
     align-items: center;
     align-content: center;
-    color: white;
+    color: #fefefe;
 }
 .Footer .Footer__Right {
   display: flex;
@@ -44,7 +44,7 @@
 }
 .Footer .Footer__Left img {
     display: block;
-    fill: white;
+    fill: #fefefe;
     transition: 0.3s linear;
 }
 

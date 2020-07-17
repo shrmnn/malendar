@@ -1,22 +1,32 @@
 .Header {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    z-index: 99;
+}
+
+#HeaderContainer {
+    width: 90%;
+    margin: auto;
     display: flex;
     align-items: center;
     text-align: center;
     justify-content: space-between;
-    height: 40px;
-    width: 100%;
     user-select: none;
+    background-color: rgb(var(--color-page-background));
 }
 
-.Header a {
+#HeaderContainer a {
     text-decoration: none;
 }
 
-.Header a:active, .Header a:visited, .Header a:link, .Header a:hover {
+#HeaderContainer a:active, #HeaderContainer a:visited, #HeaderContainer a:link, #HeaderContainer a:hover {
     color: inherit;
 }
 
-.Header .Header--active {
+#HeaderContainer .Header--active {
     font-weight: bold;
 }
 

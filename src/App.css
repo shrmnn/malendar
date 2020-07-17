@@ -1,18 +1,18 @@
 :root {
     --color-page-background: 14 14 14;
-    --color-text: 255 255 255;
+    --color-text: 254 254 254;
     --invert-color: 23 51 115;
 }
 
 .blue {
     --color-page-background: 23 51 115;
-    --color-text: 255 255 255;
+    --color-text: 254 254 254;
     --invert-color: 14 14 14;
 }
 
 .red {
     --color-page-background: 249 63 50;
-    --color-text: 255 255 255;
+    --color-text: 254 254 254;
 }
 
 .light {
@@ -31,6 +31,7 @@ html {
     color: rgb(var(--color-text));
     width: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     align-content: center;
     justify-content: center;

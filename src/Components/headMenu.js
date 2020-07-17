@@ -33,6 +33,24 @@ const HeadMenu = React.memo((props) => {
                         >
                             <img alt="fur-arrow" src={arrow}/>
                         </button>
+                        <div
+                            aria-label="select month"
+                            className="HeadContainer__DateNav_DateMonth"
+                            onClick={() =>
+                                history.push(`/malendar/${props.monthClick(true)}`)
+                            }
+                            title="Click for random month"
+                        >
+                            {props.date.month}
+                        </div>
+                        <div
+                            aria-label="select year"
+                            className="HeadContainer__DateNav_DateYear"
+                            onClick={() => history.push(`/malendar/${props.yearClick(true)}`)}
+                            title="Click for random year"
+                        >
+                            {props.date.year}
+                        </div>
                     </>
                 ) : (
                     <>
@@ -57,45 +75,48 @@ const HeadMenu = React.memo((props) => {
                         >
                             <img alt="fur-arrow" src={arrow}/>
                         </button>
+                        <div
+                            aria-label="select month"
+                            className="HeadContainer__DateNav_DateMonth"
+                            onClick={props.monthClick}
+                            title="Click for random month"
+                        >
+                            {props.date.month}
+                        </div>
+                        <div
+                            aria-label="select year"
+                            className="HeadContainer__DateNav_DateYear"
+                            onClick={props.yearClick}
+                            title="Click for random year"
+                        >
+                            {props.date.year}
+                        </div>
                     </>
                 )}
-
-                <div
-                    aria-label="select month"
-                    className="HeadContainer__DateNav_DateMonth"
-                    onClick={props.monthClick}
-                    title="Click for random month"
-                >
-                    {props.date.month}
-                </div>
-                <div
-                    aria-label="select year"
-                    className="HeadContainer__DateNav_DateYear"
-                    onClick={props.yearClick}
-                    title="Click for random year"
-                >
-                    {props.date.year}
-                </div>
             </div>
             <div
                 aria-label="select if you want to see ongoing or new releases"
                 className="HeadContainer__ReleaseNav"
             >
                 <NavLink
+                    aria-label="Ongoing page (WIP)"
                     className={`padding-left`}
                     //onClick={handleClicked}
                     exact
                     to="/malendar/ongoing"
                     activeClassName="HeadContainer__ReleaseNav--active"
+                    title="WIP"
                 >
                     Ongoing
                 </NavLink>
                 <NavLink
                     strict
+                    aria-label="New Releases"
                     className={`padding-right`}
                     //onClick={handleClicked}
                     to={`/malendar/${props.date.year}${"/" + props.date.month}`}
                     activeClassName="HeadContainer__ReleaseNav--active"
+                    title="New Releases (pages mode)"
                 >
                     New releases
                 </NavLink>

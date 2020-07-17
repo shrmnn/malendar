@@ -13,8 +13,8 @@ const App = () => {
   return (
       <Router>
         <div className="App">
+          <Header/>
           <div className="Content">
-            <Header/>
             <Switch>
               <Route exact path="/malendar/about">
                 <About/>

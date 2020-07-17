@@ -4,12 +4,7 @@ import {month, year} from "../api/Date";
 
 const Multititle = (props) => {
   return (
-      <div
-          className="MultiDay"
-          style={{
-              display: `${props.MV ? "grid" : "none"}`,
-          }}
-      >
+      <div className="MultiDay">
           <h1 className="MultiDay__Header">
               More for {new Date(props.date).getDate()}{" "}
               {month.months[new Date(props.date).getMonth()] + " "}

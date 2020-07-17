@@ -5,7 +5,7 @@ const About = () => {
   useEffect(() => {
     (async function getStatus() {
       let serverStatus = await fetch(
-          process.env.REACT_APP_API + "anime/1"
+        process.env.REACT_APP_API + "anime/1"
       ).then((res) => {
         return res.status.toString();
       });
