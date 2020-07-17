@@ -1,26 +1,25 @@
 {
   "files": {
-    "main.css": "/malendar/static/css/main.a9d41b74.chunk.css",
-    "main.js": "/malendar/static/js/main.87bb5c51.chunk.js",
-    "main.js.map": "/malendar/static/js/main.87bb5c51.chunk.js.map",
-    "runtime-main.js": "/malendar/static/js/runtime-main.a7483bf0.js",
-    "runtime-main.js.map": "/malendar/static/js/runtime-main.a7483bf0.js.map",
-    "static/js/2.f8954bc9.chunk.js": "/malendar/static/js/2.f8954bc9.chunk.js",
-    "static/js/2.f8954bc9.chunk.js.map": "/malendar/static/js/2.f8954bc9.chunk.js.map",
-    "static/js/3.11667405.chunk.js": "/malendar/static/js/3.11667405.chunk.js",
-    "static/js/3.11667405.chunk.js.map": "/malendar/static/js/3.11667405.chunk.js.map",
+    "main.css": "/malendar/static/css/main.2aa964fe.chunk.css",
+    "main.js": "/malendar/static/js/main.29e28bfc.chunk.js",
+    "main.js.map": "/malendar/static/js/main.29e28bfc.chunk.js.map",
+    "runtime-main.js": "/malendar/static/js/runtime-main.ed17ac73.js",
+    "runtime-main.js.map": "/malendar/static/js/runtime-main.ed17ac73.js.map",
+    "static/js/2.707f2d15.chunk.js": "/malendar/static/js/2.707f2d15.chunk.js",
+    "static/js/2.707f2d15.chunk.js.map": "/malendar/static/js/2.707f2d15.chunk.js.map",
     "index.html": "/malendar/index.html",
-    "precache-manifest.d3945de68c31b71221f24e5434c28b01.js": "/malendar/precache-manifest.d3945de68c31b71221f24e5434c28b01.js",
+    "precache-manifest.230cc5963bc16cca4b02270485e75ae3.js": "/malendar/precache-manifest.230cc5963bc16cca4b02270485e75ae3.js",
     "service-worker.js": "/malendar/service-worker.js",
-    "static/css/main.a9d41b74.chunk.css.map": "/malendar/static/css/main.a9d41b74.chunk.css.map",
-    "static/js/2.f8954bc9.chunk.js.LICENSE.txt": "/malendar/static/js/2.f8954bc9.chunk.js.LICENSE.txt",
+    "static/css/main.2aa964fe.chunk.css.map": "/malendar/static/css/main.2aa964fe.chunk.css.map",
+    "static/js/2.707f2d15.chunk.js.LICENSE.txt": "/malendar/static/js/2.707f2d15.chunk.js.LICENSE.txt",
     "static/media/arrow.svg": "/malendar/static/media/arrow.2c511b88.svg",
+    "static/media/fourzerofour.webp": "/malendar/static/media/fourzerofour.29291068.webp",
     "static/media/moon.svg": "/malendar/static/media/moon.d58b953a.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.a7483bf0.js",
-    "static/js/2.f8954bc9.chunk.js",
-    "static/css/main.a9d41b74.chunk.css",
-    "static/js/main.87bb5c51.chunk.js"
+    "static/js/runtime-main.ed17ac73.js",
+    "static/js/2.707f2d15.chunk.js",
+    "static/css/main.2aa964fe.chunk.css",
+    "static/js/main.29e28bfc.chunk.js"
   ]
 }
