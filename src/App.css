@@ -1,23 +1,23 @@
 :root {
-    --color-page-background: 14 14 14;
-    --color-text: 254 254 254;
-    --invert-color: 23 51 115;
+    --color-page-background: 14, 14, 14;
+    --color-text: 254, 254, 254;
+    --invert-color: 23, 51, 115;
 }
 
 .blue {
-    --color-page-background: 23 51 115;
-    --color-text: 254 254 254;
-    --invert-color: 14 14 14;
+    --color-page-background: 23, 51, 115;
+    --color-text: 254, 254, 254;
+    --invert-color: 14, 14, 14;
 }
 
 .red {
-    --color-page-background: 249 63 50;
-    --color-text: 254 254 254;
+    --color-page-background: 249, 63, 50;
+    --color-text: 254, 254, 254;
 }
 
 .light {
-    --color-page-background: 248 249 250;
-    --color-text: 14 14 14;
+    --color-page-background: 248, 249, 250;
+    --color-text: 14, 14, 14;
 }
 
 html {

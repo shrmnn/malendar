@@ -1,93 +1,110 @@
 import arrow from "../graphics/arrow.svg";
 import React from "react";
-import {NavLink, useHistory} from "react-router-dom";
+import {NavLink, useHistory, useLocation} from "react-router-dom";
 
 const HeadMenu = React.memo((props) => {
     const history = useHistory();
+    const location = useLocation();
+    const isOngoing = location.pathname === "/malendar/ongoing";
+
     return (
         <div aria-label="head navigation" className="HeadContainer">
             <div className="HeadContainer__DateNav">
                 {props.withParams ? (
                     <>
-                        <button
-                            tabIndex="0"
-                            className="HeadContainer__Button"
-                            onClick={() =>
-                                history.push(`/malendar/${props.changeDate(-1, true)}`)
-                            }
-                            title="Previous month"
-                        >
-                            <img
-                                alt="back-arrow"
-                                style={{transform: `rotate(180deg)`}}
-                                src={arrow}
-                            />
-                        </button>
-                        <button
-                            tabIndex="0"
-                            className="HeadContainer__Button"
-                            onClick={() =>
-                                history.push(`/malendar/${props.changeDate(1, true)}`)
-                            }
-                            title="Next month"
-                        >
-                            <img alt="fur-arrow" src={arrow}/>
-                        </button>
+                        {!isOngoing ? (
+                            <>
+                                <button
+                                    tabIndex="0"
+                                    className="HeadContainer__Button"
+                                    onClick={() =>
+                                        history.push(`/malendar/${props.changeDate(-1, true)}`)
+                                    }
+                                    title="Previous month"
+                                >
+                                    <img
+                                        alt="back-arrow"
+                                        style={{transform: `rotate(180deg)`}}
+                                        src={arrow}
+                                    />
+                                </button>
+                                <button
+                                    tabIndex="0"
+                                    className="HeadContainer__Button"
+                                    onClick={() =>
+                                        history.push(`/malendar/${props.changeDate(1, true)}`)
+                                    }
+                                    title="Next month"
+                                >
+                                    <img alt="fur-arrow" src={arrow}/>
+                                </button>
+                            </>
+                        ) : null}
                         <div
                             aria-label="select month"
                             className="HeadContainer__DateNav_DateMonth"
-                            onClick={() =>
-                                history.push(`/malendar/${props.monthClick(true)}`)
+                            onClick={
+                                !isOngoing
+                                    ? () => history.push(`/malendar/${props.monthClick(true)}`)
+                                    : null
                             }
-                            title="Click for random month"
+                            title={!isOngoing ? "Click for random month" : ""}
                         >
                             {props.date.month}
                         </div>
                         <div
                             aria-label="select year"
                             className="HeadContainer__DateNav_DateYear"
-                            onClick={() => history.push(`/malendar/${props.yearClick(true)}`)}
-                            title="Click for random year"
+                            onClick={
+                                !isOngoing
+                                    ? () => history.push(`/malendar/${props.yearClick(true)}`)
+                                    : null
+                            }
+                            title={!isOngoing ? "Click for random year" : ""}
                         >
                             {props.date.year}
                         </div>
                     </>
                 ) : (
                     <>
-                        <button
-                            tabIndex="0"
-                            className="HeadContainer__Button"
-                            onClick={props.changeDate.bind(this, -1)}
-                            title="Previous month"
-                        >
-                            <img
-                                alt="back-arrow"
-                                style={{transform: `rotate(180deg)`}}
-                                src={arrow}
-                            />
-                        </button>
+                        {!isOngoing ? (
+                            <>
+                                <button
+                                    tabIndex="0"
+                                    className="HeadContainer__Button"
+                                    onClick={props.changeDate.bind(this, -1)}
+                                    title="Previous month"
+                                >
+                                    <img
+                                        alt="back-arrow"
+                                        style={{transform: `rotate(180deg)`}}
+                                        src={arrow}
+                                    />
+                                </button>
 
-                        <button
-                            tabIndex="0"
-                            className="HeadContainer__Button"
-                            onClick={props.changeDate.bind(this, 1)}
-                            title="Next month"
-                        >
-                            <img alt="fur-arrow" src={arrow}/>
-                        </button>
+                                <button
+                                    tabIndex="0"
+                                    className="HeadContainer__Button"
+                                    onClick={props.changeDate.bind(this, 1)}
+                                    title="Next month"
+                                >
+                                    <img alt="fur-arrow" src={arrow}/>
+                                </button>
+                            </>
+                        ) : null}
                         <div
                             aria-label="select month"
                             className="HeadContainer__DateNav_DateMonth"
-                            onClick={props.monthClick}
-                            title="Click for random month"
+                            onClick={!isOngoing ? props.monthClick : null}
+                            title={!isOngoing ? "Click for random month" : null}
                         >
                             {props.date.month}
                         </div>
                         <div
                             aria-label="select year"
                             className="HeadContainer__DateNav_DateYear"
-                            onClick={props.yearClick}
-                            title="Click for random year"
+                            onClick={!isOngoing ? props.yearClick : null}
+                            title={!isOngoing ? "Click for random year" : null}
                         >
                             {props.date.year}
                         </div>
@@ -99,13 +116,13 @@ const HeadMenu = React.memo((props) => {
                 className="HeadContainer__ReleaseNav"
             >
                 <NavLink
-                    aria-label="Ongoing page (WIP)"
+                    aria-label="Ongoing page (beta)"
                     className={`padding-left`}
                     //onClick={handleClicked}
                     exact
                     to="/malendar/ongoing"
                     activeClassName="HeadContainer__ReleaseNav--active"
-                    title="WIP"
+                    title="Ongoing page (beta)"
                 >
                     Ongoing
                 </NavLink>
@@ -113,7 +130,6 @@ const HeadMenu = React.memo((props) => {
                     strict
                     aria-label="New Releases"
                     className={`padding-right`}
-                    //onClick={handleClicked}
                     to={`/malendar/${props.date.year}${"/" + props.date.month}`}
                     activeClassName="HeadContainer__ReleaseNav--active"
                     title="New Releases (pages mode)"

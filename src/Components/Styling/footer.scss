@@ -9,7 +9,9 @@
   justify-content: space-between;
   align-items: center;
   align-content: center;
-  color: rgb($text-color);
+  color: rgb(var(--color-text));
+
+  margin-top: 12px;
 
   .Footer__Right {
     display: flex;
@@ -57,7 +59,7 @@
 
     img {
       display: block;
-      fill: rgb($text-color);
+      fill: rgb(var(--color-text));
       transition: .3s linear;
 
     }

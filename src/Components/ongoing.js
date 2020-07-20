@@ -1,43 +1,59 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
+import DayContainer from "./dayContainer";
+import animeAPI from "../api/getanime";
 
 const Ongoing = () => {
-  return [
-    <li key="mm_1">教えて 教えてよ その仕組みを 僕の中に誰がいるの？</li>,
-    <li key="mm_2">壊れた 壊れたよ この世界で 君が笑う 何も見えずに</li>,
+  const [titles, setTitles] = useState({});
 
-    <li key="mm_3">壊れた僕なんてさ 息を止めて</li>,
-    <li key="mm_4">ほどけない もう ほどけないよ 真実さえ freeze</li>,
-    <li key="mm_5">壊せる 壊せない 狂える 狂えない</li>,
-    <li key="mm_6">あなたを見つけて 揺れた</li>,
+  useEffect(() => {
+    let isRendered = true;
 
-    <li key="mm_7">歪んだ世界にだんだん僕は透き通って見えなくなって</li>,
-    <li key="mm_8">見つけないで 僕のことを 見つめないで</li>,
-    <li key="mm_9">誰かが描いた世界の中で あなたを傷つけたくはないよ</li>,
-    <li key="mm_10">憶えていて 僕のことを 鮮やかなまま</li>,
+    async function xd() {
+      if (isRendered) {
+        try {
+          await animeAPI.ongoingScissor();
+          await setTitles((titles) => (titles = animeAPI.ongoing));
+        } catch (error) {
+          console.error("Ongoing: error:", error);
+        }
+      }
+    }
 
-    <li key="mm_11">無限に広がる孤独が絡まる 無邪気に笑った記憶が刺さって</li>,
-    <li key="mm_12">
-      動けない 動けない 動けない 動けない 動けない 動けないよ
-    </li>,
-    <li key="mm_13">unraveling the world</li>,
+    xd();
+    console.log("Ongoing updated!");
+    document.title = `malendar for current ongoings`;
 
-    <li key="mm_14">変わってしまった 変えられなかった</li>,
-    <li key="mm_15">2つが絡まる 2人が滅びる</li>,
-    <li key="mm_16">壊せる 壊せない 狂える 狂えない</li>,
-    <li key="mm_17">あなたを汚せないよ 揺れた</li>,
+    return () => (isRendered = false);
+  }, []);
 
-    <li key="mm_18">歪んだ世界にだんだん僕は透き通って見えなくなって</li>,
-    <li key="mm_19">見つけないで 僕のことを 見つめないで</li>,
-    <li key="mm_20">誰かが仕組んだ孤独な罠に 未来がほどけてしまう前に</li>,
-    <li key="mm_21">思い出して 僕のことを 鮮やかなまま</li>,
+  let hhh = [];
 
-    <li key="mm_22">忘れないで 忘れないで 忘れないで 忘れないで</li>,
-    <li key="mm_23">変わってしまったことに paralyze</li>,
-    <li key="mm_24">変えられないことだらけparadise</li>,
-    <li key="mm_25">憶えてて 僕のことを</li>,
+  for (const key in titles) {
+    hhh[key] = titles[key].map((el, i) => {
+      return (
+          <DayContainer
+              i={i}
+              titles={titles[key]}
+              key={"DayContainer__" + i}
+              filler={false}
+              month={"July"}
+              shouldMulti={false}
+          />
+      );
+    });
+  }
 
-    <li key="mm_26">教えて 教えて 僕の中に誰かいるの？</li>,
-  ];
+  return (
+      <>
+        <ul className="Ongoing_Day">{hhh["monday"]}</ul>
+        <ul className="Ongoing_Day">{hhh["tuesday"]}</ul>
+        <ul className="Ongoing_Day">{hhh["wednesday"]}</ul>
+        <ul className="Ongoing_Day">{hhh["thursday"]}</ul>
+        <ul className="Ongoing_Day">{hhh["friday"]}</ul>
+        <ul className="Ongoing_Day">{hhh["saturday"]}</ul>
+        <ul className="Ongoing_Day">{hhh["sunday"]}</ul>
+      </>
+  );
 };
 
 export default Ongoing;

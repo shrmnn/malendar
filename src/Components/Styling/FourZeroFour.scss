@@ -2,7 +2,7 @@
 
 .FourZeroFour {
   display: grid;
-  grid-template-rows: 10vh repeat(3, max-content);
+  grid-template-rows: minmax(10vh, auto) repeat(3, max-content);
   grid-gap: 16px;
   overflow: hidden;
 
@@ -11,7 +11,7 @@
   transform: translateX(-6%);
   background: #fefefe;
 
-  color: rgb($base-color);
+  color: rgb(var(--color-page-background));
 
   user-select: none;
 
@@ -35,14 +35,14 @@
 
 
   a {
-    color: rgb($base-color);
+    color: rgb(var(--color-text));
     text-decoration: none;
   }
 
   img {
     margin: auto;
-    width: 40vw;
-    max-width: 50%;
+    //width: min(50%, 50vw);
+    max-width: 80%;
   }
 }
 

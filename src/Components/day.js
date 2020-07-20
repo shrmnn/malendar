@@ -19,7 +19,7 @@ const Day = React.memo((props) => {
     props.changeMV();
   };
 
-  let loaded = usePlaceholderImage(ani.image.split(".jpg")[0] + "l.jpg");
+  let loaded = usePlaceholderImage(ani.image.split(".webp")[0] + "l.webp");
 
   let styledDay = {
     background: `linear-gradient(180deg, rgba(0,0,0,0) 0%, #0E0E0E 105%), url(${
@@ -30,12 +30,14 @@ const Day = React.memo((props) => {
   return (
       <section
           aria-label={
-            ani.id
-                ? `[${ani.id}] Anime is ${ani.title}, their airing date is ${ani.airing}`
-                : ""
+              ani.id
+                  ? `[${ani.id}] Anime is ${ani.title}, their airing date is ${ani.airing}`
+                  : ""
           }
           className={`Days__Day ${
-              !ani.day || typeof ani.day === typeof " " ? "Days__Day--filledDay" : ""
+              (!ani.day || typeof ani.day === typeof " ") && props.shouldMulti
+                  ? "Days__Day--filledDay"
+                  : ""
           } ${
               props.id >
               month.getLastDayOfMonth(year.getCurrentYear(), month.getCurrentMonth())
@@ -48,43 +50,52 @@ const Day = React.memo((props) => {
           itemType="Anime"
           itemScope
       >
-        <div className="Days__Day_Notificators">
-          <time
-              className={`Days__Day_DayNum ${
-                  parseInt(props.id) === props.today ? "Days__Day_DayNum--mToday" : ""
-              }`}
-              dateTime={ani.airing}
-              itemType="startDate"
-          >
-            {ani.day && typeof ani.day !== typeof " "
-                ? ani.day.toString().padStart(2, "0")
-                : props.id}
-          </time>
-          {ani.multi ? (
-              <div
-                  itemType="alsoThisDay"
-                  className="Days__Day_DayNum Days__Day_DayNum--MultititleNotification"
-                  onClick={multititleClicked}
-                  title={`Also ${ani.titleArray.length} anime this day`}
+          <div className="Days__Day_Notificators">
+              <time
+                  className={`Days__Day_DayNum ${
+                      parseInt(props.id) === props.today ? "Days__Day_DayNum--mToday" : ""
+                  }`}
+                  dateTime={ani.airing}
+                  itemType="startDate"
               >
-                {"+" + ani.titleArray.length}
-              </div>
-          ) : null}
-        </div>
+                  {ani.day && typeof ani.day !== typeof " "
+                      ? ani.day.toString().padStart(2, "0")
+                      : props.id}
+              </time>
+              {ani.multi && props.shouldMulti ? (
+                  <div
+                      itemType="alsoThisDay"
+                      className="Days__Day_DayNum Days__Day_DayNum--MultititleNotification"
+                      onClick={multititleClicked}
+                      title={`+ ${ani.titleArray.length} anime this day`}
+                  >
+                      {"+" + ani.titleArray.length}
+                  </div>
+              ) : null}
+              {!props.shouldMulti ? (
+                  <div
+                      itemType="alsoThisDay"
+                      className="Days__Day_DayNum Days__Day_DayNum--MultititleNotification"
+                      title={`Time of broadcast is ${ani.broadcast.time}`}
+                  >
+                      {ani.broadcast.time}
+                  </div>
+              ) : null}
+          </div>
 
-        <div className="Days__Day_CardTitle">
-          <div className="Days__Day_CardTitle--DayTitle" itemType="name">
-            {ani
-                ? ani.title
-                : "男子高校生で売れっ子ライトノベル作家をしているけれど、年下のクラスメイトで声優の女の子に首を絞められている! The Animation 2nd Season"}
+          <div className="Days__Day_CardTitle">
+              <div className="Days__Day_CardTitle--DayTitle" itemType="name">
+                  {ani
+                      ? ani.title
+                      : "男子高校生で売れっ子ライトノベル作家をしているけれど、年下のクラスメイトで声優の女の子に首を絞められている! The Animation 2nd Season"}
+              </div>
+              <div
+                  className="Days__Day_CardTitle--DaySubtitle"
+                  itemType="productionCompany"
+              >
+                  {ani.studio ? ani.studio.name : "Studio is currently unknown"}
+              </div>
           </div>
-          <div
-              className="Days__Day_CardTitle--DaySubtitle"
-              itemType="productionCompany"
-          >
-            {ani.studio ? ani.studio.name : "Studio is currently unknown"}
-          </div>
-        </div>
       </section>
   );
 });

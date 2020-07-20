@@ -6,6 +6,23 @@ const News = () => {
       <div className="News">
         <h1>What's new?</h1>
         <section>
+          <h2>07.20.2020 update</h2>
+          <ul>
+            <h3>Features: </h3>
+            <li>Images are now in webp formats</li>
+            <li>Ongoing page (beta)</li>
+            <li>Slightly different behaviour of weekdays</li>
+
+            <h3>Bugfixes: </h3>
+            <li>Today's date was fixed</li>
+            <li>Some visual bug fixes</li>
+            <h3>In nearest future: </h3>
+            <li>Correct Ongoing page</li>
+            <li>About page</li>
+            <li>Light theme</li>
+          </ul>
+        </section>
+        <section>
           <h2>07.17.2020 update</h2>
           <ul>
             <h3>Features: </h3>

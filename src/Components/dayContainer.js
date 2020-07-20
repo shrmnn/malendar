@@ -9,17 +9,16 @@ const DayContainer = React.memo((props) => {
   const isMulti = useRef(false);
 
   const pMonth = props.month;
-  const {i, titles, filler} = props;
-  let multititle = null;
+    const {i, titles, filler} = props;
+    let multititle = null;
 
   useEffect(
       () => {
-        if (titles[i].multi) {
-          isMulti.current = true;
-          if (isMulti.current) changeState(false);
-          console.log("XDDD");
-        }
-        return () => (isMulti.current = false);
+          if (titles[i].multi && props.shouldMulti) {
+              isMulti.current = true;
+              if (isMulti.current) changeState(false);
+          }
+          return () => (isMulti.current = false);
       },
       //eslint-disable-next-line
       [pMonth]
@@ -31,43 +30,46 @@ const DayContainer = React.memo((props) => {
     } else setMultiState(!multiState);
   };
 
-  if (titles[i].multi) {
-    multititle = (
-        <Multititle
-            date={titles[i].airing}
-            titles={titles[i].titleArray}
-            MV={multiState}
-            key={titles[i].id + "_" + multiState.toString()}
-        />
-    );
-  }
+    if (titles[i].multi && props.shouldMulti) {
+        multititle = (
+            <Multititle
+                date={titles[i].airing}
+                titles={titles[i].titleArray}
+                MV={multiState}
+                key={titles[i].id + "_" + multiState.toString()}
+            />
+        );
+    }
 
   return (
       <React.Fragment>
-        <li
-            className={`Days__DayContainer ${
-                !titles[i].day || typeof titles[i].day === typeof " "
-                    ? "Days__Day--filledDay"
-                    : ""
-            }`}
-            key={"Container__" + i}
-        >
-          {titles[i].id ? (
-              <Day
-                  id={filler ? " " : (i + 1).toString().padStart(2, "0")}
-                  key={titles[i].id}
-                  ani={titles[i]}
-                  month={[month, year]}
-                  today={new Date().getDate()}
-                  changeMV={changeState}
-              />
-          ) : (
-              <DayPlaceholder
-                  id={filler ? " " : (i + 1).toString().padStart(2, "0")}
-              />
-          )}
-        </li>
-        {multiState ? multititle : ""}
+          <li
+              className={`Days__DayContainer ${
+                  (!titles[i].day || typeof titles[i].day === typeof " ") &&
+                  props.shouldMulti
+                      ? "Days__Day--filledDay"
+                      : ""
+              }`}
+              key={"Container__" + i}
+          >
+              {titles[i].id ? (
+                  <Day
+                      id={filler ? " " : (i + 1).toString().padStart(2, "0")}
+                      key={titles[i].id}
+                      ani={titles[i]}
+                      month={[month, year]}
+                      today={new Date().getDate()}
+                      changeMV={changeState}
+                      shouldMulti={props.shouldMulti}
+                  />
+              ) : (
+                  <DayPlaceholder
+                      id={filler ? " " : (i + 1).toString().padStart(2, "0")}
+                      today={new Date().getDate()}
+                  />
+              )}
+          </li>
+          {multiState ? multititle : ""}
       </React.Fragment>
   );
 });

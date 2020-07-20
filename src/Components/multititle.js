@@ -19,6 +19,7 @@ const Multititle = (props) => {
                           ani={props.titles[i]}
                           month={[month, year]}
                           today={new Date().getDate()}
+                          shouldMulti={true}
                       />
                   </div>
               ))}
