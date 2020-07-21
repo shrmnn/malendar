@@ -12,32 +12,32 @@ import FourZeroFour from "./Components/FourZeroFour";
 const App = () => {
   return (
       <Router>
-          <div className="App">
-              <Header/>
-              <div className="Content">
-                  <Switch>
-                      <Route exact path="/malendar/about">
-                          <About/>
-                      </Route>
-                      <Route exact path="/malendar/news">
-                          <News/>
-                      </Route>
-                      <Route exact path="/malendar/ongoing">
-                          <Container/>
-                      </Route>
-                      <Route exact path="/malendar/:navYear/:navMonth">
-                          <Container/>
-                      </Route>
-                      <Route exact path="/malendar/">
-                          <Container/>
-                      </Route>
-                      <Route>
-                          <FourZeroFour/>
-                      </Route>
-                  </Switch>
-                  <Footer/>
-              </div>
+        <div className="App">
+          <Header/>
+          <div className="Content">
+            <Switch>
+              <Route exact path="/malendar/about">
+                <About/>
+              </Route>
+              <Route exact path="/malendar/news">
+                <News/>
+              </Route>
+              <Route exact path="/malendar/ongoing">
+                <Container/>
+              </Route>
+              <Route exact path="/malendar/:navYear/:navMonth">
+                <Container/>
+              </Route>
+              <Route exact path="/malendar/">
+                <Container/>
+              </Route>
+              <Route>
+                <FourZeroFour/>
+              </Route>
+            </Switch>
+            <Footer/>
           </div>
+        </div>
       </Router>
   );
 };

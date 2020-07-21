@@ -210,7 +210,11 @@ const Container = React.memo((props) => {
             withParams={!!(navYear && navMonth)}
         />
         {isLoading || isError.error ? <Loading error={isError}/> : null}
-        <ol className={`Days`}>
+        <ol
+            className={`Days ${
+                location.pathname === "/malendar/ongoing" ? "ongoing" : ""
+            }`}
+        >
           <Weekdays/>
           <Switch>
             <Route exact path="/malendar/ongoing">

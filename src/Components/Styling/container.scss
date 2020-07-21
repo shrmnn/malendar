@@ -18,6 +18,11 @@
   overflow: hidden;
 }
 
+a:hover {
+  background-color: rgba(var(--color-text), 0.05);
+  border-radius: 5px;
+}
+
 .HeadContainer {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -29,7 +34,7 @@
 
   .HeadContainer__DateNav {
     display: grid;
-    grid-template-columns: repeat(4, 0.08fr);
+    grid-template-columns: repeat(4, max-content);
     grid-auto-rows: 84px;
     grid-gap: 5px;
     //grid-template-rows: 1fr;
@@ -65,6 +70,7 @@
       background: initial;
       color: rgb(var(--color-text));
       border: none;
+      border-radius: 5px;
       cursor: pointer;
 
       &:focus {
@@ -73,15 +79,22 @@
 
       img {
         height: 40%;
+        width: 40px;
         filter: invert(1);
       }
+
+      &:hover {
+        background-color: rgba(var(--color-text), 0.05);
+        border-radius: 5px;
+      }
     }
+
   }
 
   .HeadContainer__ReleaseNav {
     display: grid;
     grid-template-columns: max-content max-content;
-    grid-gap: 5px;
+    grid-gap: 15px;
 
 
     font-size: 24px;
@@ -153,6 +166,17 @@
     &:hover {
       transform: scale(1.05);
       filter: drop-shadow(0 0 0.75rem rgba(255, 255, 255, 15%));
+      animation: background-slide 5s cubic-bezier(.21, .51, .87, .63);
+    }
+
+    @keyframes background-slide {
+      0% {
+        background-position: top;
+      }
+      66% {
+        background-position: bottom;
+      }
+
     }
 
     .Days__Day_Notificators {
@@ -377,7 +401,7 @@
     grid-gap: 16px;
 
     .Days__DayContainer {
-      grid-template-rows: minmax(200px, 40vh);
+      grid-template-rows: minmax(200px, 30vh);
     }
 
     .Days__Day--filledDay {
@@ -414,7 +438,12 @@
         transform: none;
       }
     }
+
+    #Monday, #Tuesday, #Wednesday, #Thursday, #Friday, #Saturday, #Sunday {
+      display: none;
+    }
   }
+
   .Ongoing_Day {
     grid-gap: 16px;
 
@@ -430,13 +459,20 @@
     }
 
   }
-  #Thursday, #Friday, #Saturday {
-    grid-row: 3;
+  .ongoing {
+    #Monday, #Tuesday, #Wednesday, #Thursday, #Friday, #Saturday, #Sunday {
+      display: list-item;
+    }
+
+    #Thursday, #Friday, #Saturday {
+      grid-row: 3;
+    }
+
+    #Sunday, #Hiddenday {
+      grid-row: 5;
+    }
   }
-  #Sunday, #Hiddenday {
-    grid-row: 5;
-    display: list-item;
-  }
+
 }
 
 @media (max-width: 700px) {
@@ -465,11 +501,21 @@
 
   .Days {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     grid-gap: 16px;
 
     .Days__Day {
       border-radius: 20px;
+
+      .Days__Day_CardTitle--DayTitle {
+        font-size: Calc(1vw + 12px);
+        line-height: 4vw;
+      }
+
+      .Days__Day_CardTitle--DaySubtitle {
+        font-size: Calc(1vw + 10px);
+        line-height: 3vw;
+      }
     }
 
     .MultiDay__Titles {
@@ -479,18 +525,29 @@
       padding: 15px;
     }
   }
-  #Wednesday, #Thursday {
-    grid-row: 3;
-  }
-  #Friday, #Saturday {
-    grid-row: 5;
-  }
-  #Sunday, #Hiddenday_1 {
-    display: list-item;
-    grid-row: 7;
-  }
-  #Hiddenday_2 {
-    display: none;
+
+  .ongoing {
+    grid-template-columns: 1fr 1fr;
+
+    #Monday, #Tuesday, #Wednesday, #Thursday, #Friday, #Saturday, #Sunday {
+      display: list-item;
+    }
+
+    #Wednesday, #Thursday {
+      grid-row: 3;
+    }
+
+    #Friday, #Saturday {
+      grid-row: 5;
+    }
+
+    #Sunday, #Hiddenday_1 {
+      grid-row: 7;
+    }
+
+    #Hiddenday_2 {
+      display: none;
+    }
   }
 
 

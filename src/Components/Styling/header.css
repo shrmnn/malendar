@@ -17,15 +17,12 @@
     user-select: none;
     background-color: rgb(var(--color-page-background));
 }
-
 #HeaderContainer a {
     text-decoration: none;
 }
-
 #HeaderContainer a:active, #HeaderContainer a:visited, #HeaderContainer a:link, #HeaderContainer a:hover {
     color: inherit;
 }
-
 #HeaderContainer .Header--active {
     font-weight: bold;
 }
@@ -34,7 +31,7 @@
     font-style: normal;
     font-weight: 200;
     font-size: 24px;
-    line-height: 28px;
+    line-height: 40px;
     display: flex;
     align-items: center;
     text-align: center;
@@ -48,12 +45,11 @@
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
-    line-height: 16px;
+    line-height: 40px;
     display: flex;
     align-items: center;
     text-align: right;
 }
-
 .Menu:nth-child(1) {
     padding: 0 15px 0 15px;
 }
