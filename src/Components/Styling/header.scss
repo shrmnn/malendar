@@ -60,7 +60,8 @@
   align-items: center;
   text-align: right;
 
-  &:nth-child(1) {
-    padding: 0 15px 0 15px;
-  }
+  padding: 0 15px 0 15px;
+
+  transform: translateX(15px);
+
 }

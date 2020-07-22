@@ -16,6 +16,23 @@ const News = () => {
             <h3>Bugfixes: </h3>
             <li>Today's date was fixed</li>
             <li>Some visual bug fixes</li>
+            <h4>Minor updates: </h4>
+            <li>patch _02: Added background image animation for titles</li>
+            <li>patch _02: Fixed visual bugs with date menu size</li>
+            <li>
+              patch _02: Fixed visual bugs with incorrect behaviour on ongoing
+              page
+            </li>
+            <br/>
+            <li>patch _03: Added background colorizing for active multititles</li>
+            <li>patch _03: Fixed visual bugs with buttons</li>
+            <li>
+              patch _03: Fixed visual bugs with missing highlighting of 'New
+              releases' tab
+            </li>
+            <li>patch _03: Fixed visual bugs with multititle notificator</li>
+            <li>patch _03: Fixed another visual bugs on ongoing page</li>
+            <li>patch _03: Fixed visual bugs for touch screen users</li>
             <h3>In nearest future: </h3>
             <li>Correct Ongoing page</li>
             <li>About page</li>

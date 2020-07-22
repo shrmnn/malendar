@@ -11,6 +11,7 @@ const DayContainer = React.memo((props) => {
     const pMonth = props.month;
     const {i, titles, filler} = props;
     let multititle = null;
+    const today = new Date().getDate();
 
     useEffect(
         () => {
@@ -37,6 +38,7 @@ const DayContainer = React.memo((props) => {
                 titles={titles[i].titleArray}
                 MV={multiState}
                 key={titles[i].id + "_" + multiState.toString()}
+                today={today}
             />
         );
     }
@@ -58,9 +60,11 @@ const DayContainer = React.memo((props) => {
                         key={titles[i].id}
                         ani={titles[i]}
                         month={[month, year]}
-                        today={new Date().getDate()}
+                        today={today}
                         changeMV={changeState}
                         shouldMulti={props.shouldMulti}
+                        shouldID={false}
+                        multistate={multiState}
                     />
                 ) : (
                     <DayPlaceholder

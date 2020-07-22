@@ -1,9 +1,12 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import DayContainer from "./dayContainer";
 import animeAPI from "../api/getanime";
+import Loading from "./loading";
 
 const Ongoing = () => {
   const [titles, setTitles] = useState({});
+  const [isLoading, setLoadingState] = useState(false);
+  const [isError, setErrorState] = useState({error: false, code: ""});
 
   useEffect(() => {
     let isRendered = true;
@@ -11,8 +14,10 @@ const Ongoing = () => {
     async function xd() {
       if (isRendered) {
         try {
+          toggleLoadState(true);
           await animeAPI.ongoingScissor();
           await setTitles((titles) => (titles = animeAPI.ongoing));
+          toggleLoadState(false);
         } catch (error) {
           console.error("Ongoing: error:", error);
         }
@@ -26,32 +31,44 @@ const Ongoing = () => {
     return () => (isRendered = false);
   }, []);
 
-  let hhh = [];
+  const toggleLoadState = (shouldLoad) => {
+    if (shouldLoad) {
+      setLoadingState(true);
+      setErrorState({error: false, code: ""});
+    } else {
+      setLoadingState(false);
+    }
+  };
 
-  for (const key in titles) {
-    hhh[key] = titles[key].map((el, i) => {
-      return (
-          <DayContainer
-              i={i}
-              titles={titles[key]}
-              key={"DayContainer__" + i}
-              filler={false}
-              month={"July"}
-              shouldMulti={false}
-          />
-      );
-    });
-  }
+  let memOngoingList = useMemo(() => {
+    let hhh = [];
+    for (const key in titles) {
+      hhh[key] = titles[key].map((el, i) => {
+        return (
+            <DayContainer
+                i={i}
+                titles={titles[key]}
+                key={"DayContainer__" + i}
+                filler={false}
+                month={"July"}
+                shouldMulti={false}
+            />
+        );
+      });
+    }
+    return hhh;
+  }, [titles]);
 
   return (
       <>
-        <ul className="Ongoing_Day">{hhh["monday"]}</ul>
-        <ul className="Ongoing_Day">{hhh["tuesday"]}</ul>
-        <ul className="Ongoing_Day">{hhh["wednesday"]}</ul>
-        <ul className="Ongoing_Day">{hhh["thursday"]}</ul>
-        <ul className="Ongoing_Day">{hhh["friday"]}</ul>
-        <ul className="Ongoing_Day">{hhh["saturday"]}</ul>
-        <ul className="Ongoing_Day">{hhh["sunday"]}</ul>
+        {isLoading || isError.error ? <Loading error={isError}/> : null}
+        <ul className="Ongoing_Day">{memOngoingList["monday"]}</ul>
+        <ul className="Ongoing_Day">{memOngoingList["tuesday"]}</ul>
+        <ul className="Ongoing_Day">{memOngoingList["wednesday"]}</ul>
+        <ul className="Ongoing_Day">{memOngoingList["thursday"]}</ul>
+        <ul className="Ongoing_Day">{memOngoingList["friday"]}</ul>
+        <ul className="Ongoing_Day">{memOngoingList["saturday"]}</ul>
+        <ul className="Ongoing_Day">{memOngoingList["sunday"]}</ul>
       </>
   );
 };

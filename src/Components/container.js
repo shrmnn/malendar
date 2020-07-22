@@ -267,7 +267,7 @@ const Container = React.memo((props) => {
   );
 });
 
-const Weekdays = () => (
+const Weekdays = React.memo(() => (
     <React.Fragment>
       <li id="Monday">M</li>
       <li id="Tuesday">T</li>
@@ -279,6 +279,6 @@ const Weekdays = () => (
       <li id="Hiddenday_1"></li>
       <li id="Hiddenday_2"></li>
     </React.Fragment>
-);
+));
 
 export default Container;

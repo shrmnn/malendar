@@ -117,9 +117,9 @@ const HeadMenu = React.memo((props) => {
             >
                 <NavLink
                     aria-label="Ongoing page (beta)"
-                    className={`padding-left`}
                     //onClick={handleClicked}
                     exact
+                    className={"HeadContainer__ReleaseNav--menu"}
                     to="/malendar/ongoing"
                     activeClassName="HeadContainer__ReleaseNav--active"
                     title="Ongoing page (beta)"
@@ -128,8 +128,12 @@ const HeadMenu = React.memo((props) => {
                 </NavLink>
                 <NavLink
                     strict
+                    className={`HeadContainer__ReleaseNav--menu ${
+                        location.pathname === "/malendar/"
+                            ? "HeadContainer__ReleaseNav--active"
+                            : ""
+                    }`}
                     aria-label="New Releases"
-                    className={`padding-right`}
                     to={`/malendar/${props.date.year}${"/" + props.date.month}`}
                     activeClassName="HeadContainer__ReleaseNav--active"
                     title="New Releases (pages mode)"

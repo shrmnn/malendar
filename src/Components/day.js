@@ -5,6 +5,7 @@ import useLocalState from "../api/useLocalState";
 const Day = React.memo((props) => {
   const ani = props.ani;
   const [month, year] = props.month;
+  const multistate = !!props.multistate;
 
   const [imageURL] = useLocalState(ani.image, ani.id);
 
@@ -58,14 +59,19 @@ const Day = React.memo((props) => {
               dateTime={ani.airing}
               itemType="startDate"
           >
-            {ani.day && typeof ani.day !== typeof " "
+            {ani.day && typeof ani.day !== typeof " " && !props.shouldID
                 ? ani.day.toString().padStart(2, "0")
                 : props.id}
           </time>
           {ani.multi && props.shouldMulti ? (
               <div
                   itemType="alsoThisDay"
-                  className="Days__Day_DayNum Days__Day_DayNum--MultititleNotification"
+                  className={`Days__Day_DayNum Days__Day_DayNum--MultititleNotification 
+            ${
+                      multistate
+                          ? "Days__Day_DayNum--MultititleNotification--active"
+                          : ""
+                  }`}
                   onClick={multititleClicked}
                   title={`+ ${ani.titleArray.length} anime this day`}
               >

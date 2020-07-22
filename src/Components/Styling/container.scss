@@ -18,7 +18,7 @@
   overflow: hidden;
 }
 
-a:hover {
+a:hover, a:active {
   background-color: rgba(var(--color-text), 0.05);
   border-radius: 5px;
 }
@@ -28,7 +28,7 @@ a:hover {
   grid-template-columns: 1fr 1fr;
   width: 100%;
 
-  user-select: none;
+  user-select: none !important;
 
   transition: 0.3s ease-in-out;
 
@@ -83,7 +83,7 @@ a:hover {
         filter: invert(1);
       }
 
-      &:hover {
+      &:hover, &:active {
         background-color: rgba(var(--color-text), 0.05);
         border-radius: 5px;
       }
@@ -94,8 +94,6 @@ a:hover {
   .HeadContainer__ReleaseNav {
     display: grid;
     grid-template-columns: max-content max-content;
-    grid-gap: 15px;
-
 
     font-size: 24px;
     line-height: 48px;
@@ -106,9 +104,15 @@ a:hover {
     align-content: end;
     align-items: end;
 
-    .HeadContainer__ReleaseNav--active {
+    &--menu {
+      padding: 0 15px 0 15px;
+      transform: translateX(15px);
+    }
+
+    &--active {
       font-weight: normal;
     }
+
   }
 
   & a {
@@ -163,11 +167,12 @@ a:hover {
 
     transition: transform .2s;
 
-    &:hover {
+    &:hover, &:active {
       transform: scale(1.05);
       filter: drop-shadow(0 0 0.75rem rgba(255, 255, 255, 15%));
-      animation: background-slide 5s cubic-bezier(.21, .51, .87, .63);
+      animation: background-slide 5s cubic-bezier(.21, .51, .87, .61);
     }
+
 
     @keyframes background-slide {
       0% {
@@ -201,12 +206,12 @@ a:hover {
 
       user-select: none;
 
-    }
+      &:not(.Days__Day_DayNum--filledDay):hover, &:not(.Days__Day_DayNum--filledDay):active {
+        background: rgba(var(--color-page-background), 0.8);
+        box-shadow: -4px 4px 4px 1px rgba(0, 0, 0, 0.5);
+        transition: 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+      }
 
-    .Days__Day_DayNum:not(.Days__Day_DayNum--filledDay):hover {
-      background: rgba(var(--color-page-background), 0.8);
-      box-shadow: -4px 4px 4px 1px rgba(0, 0, 0, 0.5);
-      transition: 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
     }
 
     .Days__Day_DayNum--mToday {
@@ -222,6 +227,9 @@ a:hover {
       font-size: 1rem;
       font-weight: 400;
 
+      &--active {
+        background-color: rgb(var(--color-page-background));
+      }
     }
 
     .Days__Day_CardTitle {
@@ -244,7 +252,7 @@ a:hover {
       transition: .2s linear;
 
 
-      &:hover {
+      &:hover, &:active {
         white-space: unset;
         overflow: unset;
         text-overflow: unset;
@@ -265,7 +273,7 @@ a:hover {
   .Days__Day--filledDay {
     cursor: default;
 
-    &:hover {
+    &:hover, &:active {
       transform: none !important;
     }
   }
@@ -370,6 +378,7 @@ a:hover {
 }
 
 #Monday, #Tuesday, #Wednesday, #Thursday, #Friday, #Saturday, #Sunday {
+  user-select: none;
   grid-row: 1;
 }
 
@@ -411,8 +420,8 @@ a:hover {
     .MultiDay__Titles {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: minmax(200px, 40vh);
-      grid-gap: 12px;
+      grid-template-rows: minmax(200px, 30vh);
+      grid-gap: 16px;
       padding: 15px;
     }
 
@@ -434,7 +443,7 @@ a:hover {
         line-height: 3vw;
       }
 
-      &:hover {
+      &:hover, &:active {
         transform: none;
       }
     }
@@ -460,7 +469,7 @@ a:hover {
 
   }
   .ongoing {
-    #Monday, #Tuesday, #Wednesday, #Thursday, #Friday, #Saturday, #Sunday {
+    #Monday, #Tuesday, #Wednesday, #Thursday, #Friday, #Saturday, #Sunday, #Hiddenday_1, #Hiddenday_2 {
       display: list-item;
     }
 
@@ -468,7 +477,7 @@ a:hover {
       grid-row: 3;
     }
 
-    #Sunday, #Hiddenday {
+    #Sunday, #Hiddenday_1, #Hiddenday_2 {
       grid-row: 5;
     }
   }
@@ -521,7 +530,7 @@ a:hover {
     .MultiDay__Titles {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      grid-gap: 12px;
+      grid-gap: 16px;
       padding: 15px;
     }
   }
