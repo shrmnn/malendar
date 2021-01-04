@@ -288,24 +288,26 @@ class AnimeAPI {
     return animelist;
   };
 
-  ongoingScissor = async () => {
-    const ongoing = await this.getOngoing();
-    this.ongoing = ongoing;
-    this.ongoingToOngoinglist(ongoing);
+  ongoingScissor = async (day) => {
+    const ongoing = await this.getOngoing(day);
+    this.ongoing[day] = ongoing;
+    await this.ongoingToOngoinglist(ongoing, day);
     return true;
   };
 
-  getOngoing = async () => {
+  getOngoing = async (day) => {
     try {
-      const response = await fetch(`${API}v4-alpha/schedules`).then((res) => {
-        if (res.status === 429) {
-          console.log("Too many requests!");
-        }
-        if (!res.ok) {
-          console.error("Could not fetch!");
-        }
-        return res;
-      });
+      const response = await fetch(`${API}v4-alpha/schedules/${day}`).then(
+          (res) => {
+            if (res.status === 429) {
+              console.log("Too many requests!");
+            }
+            if (!res.ok) {
+              console.error("Could not fetch!");
+            }
+            return res;
+          }
+      );
       const resJSON = await response.json();
       return resJSON.data;
     } catch (e) {
@@ -314,7 +316,7 @@ class AnimeAPI {
     }
   };
 
-  ongoingToOngoinglist = (animelist) => {
+  ongoingToOngoinglist = (animelist, day) => {
     let templist = animelist;
     let hhh = [];
     console.assert(
@@ -322,32 +324,30 @@ class AnimeAPI {
         "oTo: templist is not equal with animelist"
     );
 
-    for (const key in templist) {
-      hhh[key] = [];
-      if (key === "unknown" || key === "other") continue;
-      for (let i in templist[key]) {
-        try {
-          hhh[key][i] = {
-            id: templist[key][i].mal_id,
-            title: templist[key][i].title,
-            title_jp: templist[key][i].title_japanese,
-            aired: templist[key][i].aired,
-            airing: month.convertToJapanTime(templist[key][i].aired.from),
-            image: templist[key][i].images.webp.image_url,
-            studio: templist[key][i].studios[0],
-            members: templist[key][i].members,
-            broadcast: templist[key][i].broadcast,
-            titleArray: [],
-            //day: templist[key][i].aired.prop.from.day,
-          };
-        } catch (e) {
-          console.error(e);
-        }
-      }
-      hhh[key] = this.sortAnime(2, hhh[key]);
-    }
+    console.log("oTo animelist: ", animelist);
 
-    this.ongoing = hhh;
+    for (let i in templist) {
+      try {
+        hhh[i] = {
+          id: templist[i].mal_id,
+          title: templist[i].title,
+          title_jp: templist[i].title_japanese,
+          aired: templist[i].aired,
+          airing: month.convertToJapanTime(templist[i].aired.from),
+          image: templist[i].images.webp.image_url,
+          studio: templist[i].studios[0],
+          members: templist[i].members,
+          broadcast: templist[i].broadcast,
+          titleArray: [],
+          //day: templist[key][i].aired.prop.from.day,
+        };
+      } catch (e) {
+        console.error(e);
+      }
+    }
+    hhh = this.sortAnime(2, hhh);
+
+    return (this.ongoing[day] = hhh);
   };
 
   getOngoingList = (animelist) => {
