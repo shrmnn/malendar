@@ -35,7 +35,7 @@ class Month {
         cmonth === "August" ||
         cmonth === "September"
     ) {
-        season = "summer";
+      season = "summer";
     } else season = "fall";
 
     return season;
@@ -62,7 +62,7 @@ class Month {
   };
 
   convertToJapanTime = (time) => {
-      return new Date(time).toLocaleString("en-US", {timeZone: "Japan"});
+    return new Date(time).toLocaleString("en-US", {timeZone: "Japan"});
   };
 
   getFirstWeekDayOfMonth = (cmonth, cyear) => {

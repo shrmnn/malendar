@@ -24,7 +24,7 @@ const Day = React.memo((props) => {
 
   let styledDay = {
     background: `linear-gradient(180deg, rgba(0,0,0,0) 0%, #0E0E0E 100%), url(${
-        ani ? (loaded ? loaded : imageURL) : ""
+      ani ? (loaded ? loaded : imageURL) : ""
     }) center center / cover no-repeat`,
   };
 

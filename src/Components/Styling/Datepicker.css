@@ -13,7 +13,6 @@
     max-width: max-content;
     height: 100%;
 }
-
 .Datepicker input:hover, .Datepicker input:focus {
     background: rgba(255, 255, 255, 0.05);
     border-radius: 10px;
