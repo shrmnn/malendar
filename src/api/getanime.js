@@ -1,4 +1,5 @@
 import {month} from "./Date";
+import * as localdata from "../data/2020/spring.json";
 
 const API = process.env.REACT_APP_API;
 const PROXY = "";
@@ -16,8 +17,10 @@ class AnimeAPI {
   animeScissors = async (cyear, season, cmonth, shouldUpdate = true) => {
     if (shouldUpdate) {
       this.animeJSON = await this.getSeason(cyear, season);
+      //console.log("this.animeJSON:", this.animeJSON);
+      this.animeJSON = localdata.default;
     }
-    return await this.getAnimelist(this.animeJSON, cmonth, cyear);
+    return await this.getLocalAnimelist(this.animeJSON, cmonth, cyear);
   };
 
   getSeason = async (cyear, season) => {
@@ -26,6 +29,7 @@ class AnimeAPI {
     try {
       const response = await fetch(
           `${PROXY}${API}v3/season/${cyear}/${season}/`,
+          //`https://raw.githubusercontent.com/shrmnn/jikan_seasons_database/master/${cyear}/${season}.json`,
           {
             signal,
           }
@@ -76,9 +80,10 @@ class AnimeAPI {
     //console.log('sort has started!', titlelist);
     if (sortBy === undefined) sortBy = 3;
     if (animelist === undefined) animelist = [...this.titlelist];
+    const toSortAnimelist = [...animelist];
 
     if (sortBy === 0) {
-      animelist.sort((a, b) => {
+      toSortAnimelist.sort((a, b) => {
         if (a.title > b.title) {
           return 1;
         } else if (a.title < b.title) {
@@ -86,15 +91,15 @@ class AnimeAPI {
         } else return 0;
       });
     } else if (sortBy === 1) {
-      animelist.sort((a, b) => {
-        if (a.members > b.members) {
+      toSortAnimelist.sort((a, b) => {
+        if (parseInt(a.members) > parseInt(b.members)) {
           return 1;
-        } else if (a.members < b.members) {
+        } else if (parseInt(a.members) < parseInt(b.members)) {
           return -1;
         } else return 0;
       });
     } else if (sortBy === 2) {
-      animelist.sort((a, b) => {
+      toSortAnimelist.sort((a, b) => {
         if (a.broadcast === null) a.broadcast.time = "00:00";
         if (b.broadcast === null) b.broadcast.time = "00:00";
         if (a.broadcast.time > b.broadcast.time) {
@@ -104,7 +109,7 @@ class AnimeAPI {
         } else return 0;
       });
     } else {
-      animelist.sort((a, b) => {
+      toSortAnimelist.sort((a, b) => {
         if (a.airing > b.airing) {
           return 1;
         } else if (a.airing < b.airing) {
@@ -113,13 +118,14 @@ class AnimeAPI {
       });
     }
 
-    this.titlelist = [...animelist];
-    //console.log("sort is finished!", titlelist);
+    animelist = [...toSortAnimelist];
+    console.log("sort is finished!", animelist);
+    return animelist;
   };
 
   getAnimeByMonth = (cmonth, cyear) => {
     //console.log("getAnimeByMonth: ", cmonth, cyear);
-    this.sortAnime(1);
+    this.titlelist = this.sortAnime(1, this.titlelist);
     let animelist = [...this.titlelist].reverse();
     let newlist = [];
     newlist.length = month.getLastDayOfMonth(cmonth, cyear);
@@ -134,7 +140,6 @@ class AnimeAPI {
 
     animelist.forEach((a, index) => {
       const currentDate = new Date(a.airing).getTime();
-
       if (currentDate <= lastDayOfMonth && currentDate >= firstDayOfMonth) {
         //console.log(firstDayOfMonth, currentDate, lastDayOfMonth);
         //console.log(a, "a.airing is true");
@@ -153,7 +158,7 @@ class AnimeAPI {
       return false;
     });
 
-    //console.log("animelist after gabm is", newlist);
+    console.log("animelist after gabm is", newlist);
     this.titlelist = [...newlist];
   };
 
@@ -170,10 +175,7 @@ class AnimeAPI {
 
     let animelist = [...newlist];
     animelist.fill(dumbTitle, 0, animelist.length);
-    /*console.log(
-                          "Filled list is ",
-                          animelist
-                        );*/
+    /*console.log("Filled list is ", animelist);*/
     return animelist;
   };
 
@@ -234,7 +236,7 @@ class AnimeAPI {
   };
 
   testGetAnimeByMonth = (cmonth, cyear) => {
-    this.sortAnime(1);
+    this.titlelist = this.sortAnime(1);
     let animelist = [...this.titlelist].reverse();
     let newlist = [];
     newlist.length = month.getLastDayOfMonth(cmonth, cyear);
@@ -287,7 +289,7 @@ class AnimeAPI {
   };
 
   ongoingScissor = async () => {
-    let ongoing = await this.getOngoing();
+    const ongoing = await this.getOngoing();
     this.ongoing = ongoing;
     this.ongoingToOngoinglist(ongoing);
     return true;
@@ -331,7 +333,7 @@ class AnimeAPI {
             title_jp: templist[key][i].title_japanese,
             aired: templist[key][i].aired,
             airing: month.convertToJapanTime(templist[key][i].aired.from),
-            image: templist[key][i].image_url.split(".jpg")[0] + ".webp",
+            image: templist[key][i].images.webp.image_url,
             studio: templist[key][i].studios[0],
             members: templist[key][i].members,
             broadcast: templist[key][i].broadcast,
@@ -342,7 +344,7 @@ class AnimeAPI {
           console.error(e);
         }
       }
-      this.sortAnime(2, hhh[key]);
+      hhh[key] = this.sortAnime(2, hhh[key]);
     }
 
     this.ongoing = hhh;
@@ -380,8 +382,35 @@ class AnimeAPI {
 
     return true;
   };
+
+  //local api below
+
+  getLocalAnimelist = (anime, cmonth, cyear) => {
+    let animelist = [];
+
+    console.log("Anime is", anime);
+    for (let title in anime) {
+      animelist.push(anime[title]);
+    }
+
+    for (const el in animelist) {
+      animelist[el] = {
+        id: animelist[el].mal_id,
+        title: animelist[el].title,
+        airing: month.convertToJapanTime(animelist[el].airing_start),
+        image: animelist[el].image_url.split(".jpg")[0] + ".webp",
+        studio: animelist[el].producers[0],
+        members: animelist[el].members,
+        titleArray: [],
+      };
+    }
+    this.titlelist = [...new Set([...animelist])];
+    this.getAnimeByMonth(cmonth, cyear);
+
+    //console.log("getLocalAnimelist is ", animelist);
+    return true;
+  };
 }
 
 const animeAPI = new AnimeAPI();
-
 export default animeAPI;

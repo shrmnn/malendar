@@ -1,6 +1,7 @@
 import arrow from "../graphics/arrow.svg";
 import React from "react";
 import {NavLink, useHistory, useLocation} from "react-router-dom";
+import DatePicker from "./datePicker";
 
 const HeadMenu = React.memo((props) => {
     const history = useHistory();
@@ -28,6 +29,7 @@ const HeadMenu = React.memo((props) => {
                                         src={arrow}
                                     />
                                 </button>
+                                <DatePicker/>
                                 <button
                                     tabIndex="0"
                                     className="HeadContainer__Button"
@@ -40,30 +42,30 @@ const HeadMenu = React.memo((props) => {
                                 </button>
                             </>
                         ) : null}
-                        <div
-                            aria-label="select month"
-                            className="HeadContainer__DateNav_DateMonth"
-                            onClick={
-                                !isOngoing
-                                    ? () => history.push(`/malendar/${props.monthClick(true)}`)
-                                    : null
-                            }
-                            title={!isOngoing ? "Click for random month" : ""}
-                        >
-                            {props.date.month}
-                        </div>
-                        <div
-                            aria-label="select year"
-                            className="HeadContainer__DateNav_DateYear"
-                            onClick={
-                                !isOngoing
-                                    ? () => history.push(`/malendar/${props.yearClick(true)}`)
-                                    : null
-                            }
-                            title={!isOngoing ? "Click for random year" : ""}
-                        >
-                            {props.date.year}
-                        </div>
+                        {/*<div
+              aria-label="select month"
+              className="HeadContainer__DateNav_DateMonth"
+              onClick={
+                !isOngoing
+                  ? () => history.push(`/malendar/${props.monthClick(true)}`)
+                  : null
+              }
+              title={!isOngoing ? "Click for random month" : ""}
+            >
+              {props.date.month}
+            </div>
+            <div
+              aria-label="select year"
+              className="HeadContainer__DateNav_DateYear"
+              onClick={
+                !isOngoing
+                  ? () => history.push(`/malendar/${props.yearClick(true)}`)
+                  : null
+              }
+              title={!isOngoing ? "Click for random year" : ""}
+            >
+              {props.date.year}
+            </div>*/}
                     </>
                 ) : (
                     <>
@@ -81,7 +83,7 @@ const HeadMenu = React.memo((props) => {
                                         src={arrow}
                                     />
                                 </button>
-
+                                <DatePicker/>
                                 <button
                                     tabIndex="0"
                                     className="HeadContainer__Button"
@@ -92,22 +94,22 @@ const HeadMenu = React.memo((props) => {
                                 </button>
                             </>
                         ) : null}
-                        <div
-                            aria-label="select month"
-                            className="HeadContainer__DateNav_DateMonth"
-                            onClick={!isOngoing ? props.monthClick : null}
-                            title={!isOngoing ? "Click for random month" : null}
-                        >
-                            {props.date.month}
-                        </div>
-                        <div
-                            aria-label="select year"
-                            className="HeadContainer__DateNav_DateYear"
-                            onClick={!isOngoing ? props.yearClick : null}
-                            title={!isOngoing ? "Click for random year" : null}
-                        >
-                            {props.date.year}
-                        </div>
+                        {/*<div
+              aria-label="select month"
+              className="HeadContainer__DateNav_DateMonth"
+              onClick={!isOngoing ? props.monthClick : null}
+              title={!isOngoing ? "Click for random month" : null}
+            >
+              {props.date.month}
+            </div>
+            <div
+              aria-label="select year"
+              className="HeadContainer__DateNav_DateYear"
+              onClick={!isOngoing ? props.yearClick : null}
+              title={!isOngoing ? "Click for random year" : null}
+            >
+              {props.date.year}
+            </div>*/}
                     </>
                 )}
             </div>

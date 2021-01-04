@@ -34,7 +34,7 @@ a:hover, a:active {
 
   .HeadContainer__DateNav {
     display: grid;
-    grid-template-columns: repeat(4, max-content);
+    grid-template-columns: max-content minmax(min-content, 65vw) max-content;
     grid-auto-rows: 84px;
     grid-gap: 5px;
     //grid-template-rows: 1fr;
@@ -79,7 +79,7 @@ a:hover, a:active {
 
       img {
         height: 40%;
-        width: 40px;
+        width: 35px;
         filter: invert(1);
       }
 
@@ -427,10 +427,14 @@ a:hover, a:active {
 
     .Days__Day {
       .Days__Day_DayNum {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
         line-height: 2.5rem;
         width: 2.5rem;
         height: 2.5rem;
+      }
+
+      .Days__Day_DayNum--MultititleNotification {
+        font-size: 1.2rem;
       }
 
       .Days__Day_CardTitle--DayTitle {

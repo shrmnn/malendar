@@ -1,0 +1,45 @@
+.FourZeroFour {
+    display: grid;
+    grid-template-rows: minmax(10vh, auto) repeat(3, max-content);
+    grid-gap: 16px;
+    overflow: hidden;
+    min-height: calc(100vh - 80px);
+    width: 100vw;
+    transform: translateX(-6%);
+    background: #fefefe;
+    color: rgb(var(--color-page-background));
+    user-select: none;
+}
+
+.FourZeroFour h1, .FourZeroFour h2 {
+    margin: 0px;
+    font-family: Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+}
+
+.FourZeroFour h1 {
+    font-size: 6vw;
+    white-space: pre;
+}
+
+.FourZeroFour h2 {
+    font-size: 3vw;
+    white-space: pre;
+}
+
+.FourZeroFour a {
+    color: rgb(var(--color-text));
+    text-decoration: none;
+}
+
+.FourZeroFour img {
+    margin: auto;
+    max-width: 80%;
+}
+
+.--shadow {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/*# sourceMappingURL=FourZeroFour.css.map */

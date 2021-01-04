@@ -23,8 +23,8 @@ const Day = React.memo((props) => {
   let loaded = usePlaceholderImage(ani.image.split(".webp")[0] + "l.webp");
 
   let styledDay = {
-    background: `linear-gradient(180deg, rgba(0,0,0,0) 0%, #0E0E0E 105%), url(${
-      ani ? (loaded ? loaded : imageURL) : ""
+    background: `linear-gradient(180deg, rgba(0,0,0,0) 0%, #0E0E0E 100%), url(${
+        ani ? (loaded ? loaded : imageURL) : ""
     }) center center / cover no-repeat`,
   };
 

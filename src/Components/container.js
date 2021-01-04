@@ -12,15 +12,15 @@ import DayPlaceholder from "./Skeleton/dayPlaceholder";
 
 const Container = React.memo((props) => {
   const location = useLocation();
-  const {navYear, navMonth} = useParams();
-  const [titles, setTitles] = useState([]);
+    const {navYear, navMonth} = useParams();
+    const [titles, setTitles] = useState([]);
   const [date, setDate] = useState({
     month: month.getCurrentMonth(),
     year: 2020,
   });
-  const [isLoading, setLoadingState] = useState(false);
-  const [isError, setErrorState] = useState({error: false, code: ""});
-  const [fillerWeek, setFillerWeek] = useState([]);
+    const [isLoading, setLoadingState] = useState(false);
+    const [isError, setErrorState] = useState({error: false, code: ""});
+    const [fillerWeek, setFillerWeek] = useState([]);
 
   const isRendered = useRef(false);
   const pastDate = useRef({});
@@ -68,7 +68,7 @@ const Container = React.memo((props) => {
       }
 
       if (date.month !== currentMonth || date.year !== currentYear) {
-        setDate((date) => (date = {month: currentMonth, year: currentYear}));
+          setDate((date) => (date = {month: currentMonth, year: currentYear}));
       }
 
       console.log("Container updated!");
@@ -76,8 +76,8 @@ const Container = React.memo((props) => {
       setDate(
           (date) =>
               (date = {
-                month: month.getCurrentMonth(),
-                year: year.getCurrentYear(),
+                  month: month.getCurrentMonth(),
+                  year: year.getCurrentYear(),
               })
       );
     }
@@ -89,9 +89,9 @@ const Container = React.memo((props) => {
     isRendered.current = true;
 
     function setFirstDay() {
-      let tempFillerWeek = [];
-      let firstWeekDay =
-          month.getFirstWeekDayOfMonth(date.month, date.year) - 1;
+        let tempFillerWeek = [];
+        let firstWeekDay =
+            month.getFirstWeekDayOfMonth(date.month, date.year) - 1;
       if (firstWeekDay < 0) firstWeekDay = 6;
 
       tempFillerWeek.length = firstWeekDay;
@@ -137,7 +137,7 @@ const Container = React.memo((props) => {
 
         if (isRendered.current) setFirstDay();
       } catch (error) {
-        setErrorState({error: true, code: error});
+          setErrorState({error: true, code: error});
       }
       if (location.pathname !== "/malendar/ongoing") {
         document.title = `malendar for ${date.month} ${date.year}`;
@@ -154,8 +154,8 @@ const Container = React.memo((props) => {
 
   const toggleLoadState = (shouldLoad) => {
     if (shouldLoad) {
-      setLoadingState(true);
-      setErrorState({error: false, code: ""});
+        setLoadingState(true);
+        setErrorState({error: false, code: ""});
     } else {
       setLoadingState(false);
     }
@@ -163,31 +163,31 @@ const Container = React.memo((props) => {
 
   const monthClick = (withParams = false) => {
     let nMonth = month.getRandomMonth(date);
-    setDate({...date, month: nMonth});
+      setDate({...date, month: nMonth});
     if (withParams) return date.year + "/" + nMonth;
     console.log("Current season is", month.getSeasonByMonth(date.month));
   };
 
   const yearClick = (withParams = false) => {
     let nYear = year.getRandomYear(date);
-    setDate({...date, year: nYear});
+      setDate({...date, year: nYear});
     if (withParams) return nYear + "/" + date.month;
   };
 
   const changeDate = (direction, withParams = false) => {
     if (date.month === "January" && direction < 0) {
-      setDate({month: "December", year: parseInt(date.year) - 1});
+        setDate({month: "December", year: parseInt(date.year) - 1});
       if (withParams) return parseInt(date.year) - 1 + "/December";
     } else if (date.month === "December" && direction > 0) {
-      setDate({month: "January", year: parseInt(date.year) + 1});
+        setDate({month: "January", year: parseInt(date.year) + 1});
       if (withParams) return parseInt(date.year) + 1 + "/January";
     } else {
       setDate({
-        ...date,
-        month:
-            month.months[
-            month.months.findIndex((e) => e === date.month) + direction
-                ],
+          ...date,
+          month:
+              month.months[
+              month.months.findIndex((e) => e === date.month) + direction
+                  ],
       });
       if (withParams)
         return (
@@ -202,82 +202,82 @@ const Container = React.memo((props) => {
 
   return (
       <main className="Container">
-        <HeadMenu
-            monthClick={monthClick}
-            yearClick={yearClick}
-            date={date}
-            changeDate={changeDate}
-            withParams={!!(navYear && navMonth)}
-        />
-        {isLoading || isError.error ? <Loading error={isError}/> : null}
-        <ol
-            className={`Days ${
-                location.pathname === "/malendar/ongoing" ? "ongoing" : ""
-            }`}
-        >
-          <Weekdays/>
-          <Switch>
-            <Route exact path="/malendar/ongoing">
-              <Ongoing/>
-            </Route>
-            <Route exact path="/malendar/:navYear/:navMonth">
-              {fillerWeek.map((el, i) => (
-                  <li
-                      className={`Days__DayContainer Days__Day--filledDay`}
-                      key={"Container__" + i}
-                  >
-                    <DayPlaceholder key={"DayPlaceholder__" + i}/>
-                  </li>
-              ))}
-              {titles.map((el, i) => (
-                  <DayContainer
-                      i={i}
-                      titles={titles}
-                      key={"DayContainer__" + i}
-                      filler={false}
-                      month={date.month}
-                      shouldMulti={true}
-                  />
-              ))}
-            </Route>
-            <Route exact path="/malendar/">
-              {fillerWeek.map((el, i) => (
-                  <li
-                      className={`Days__DayContainer Days__Day--filledDay`}
-                      key={"Container__" + i}
-                  >
-                    <DayPlaceholder key={"DayPlaceholder__" + i}/>
-                  </li>
-              ))}
+          <HeadMenu
+              monthClick={monthClick}
+              yearClick={yearClick}
+              date={date}
+              changeDate={changeDate}
+              withParams={!!(navYear && navMonth)}
+          />
+          {isLoading || isError.error ? <Loading error={isError}/> : null}
+          <ol
+              className={`Days ${
+                  location.pathname === "/malendar/ongoing" ? "ongoing" : ""
+              }`}
+          >
+              <Weekdays/>
+              <Switch>
+                  <Route exact path="/malendar/ongoing">
+                      <Ongoing/>
+                  </Route>
+                  <Route exact path="/malendar/:navYear/:navMonth">
+                      {fillerWeek.map((el, i) => (
+                          <li
+                              className={`Days__DayContainer Days__Day--filledDay`}
+                              key={"Container__" + i}
+                          >
+                              <DayPlaceholder key={"DayPlaceholder__" + i}/>
+                          </li>
+                      ))}
+                      {titles.map((el, i) => (
+                          <DayContainer
+                              i={i}
+                              titles={titles}
+                              key={"DayContainer__" + i}
+                              filler={false}
+                              month={date.month}
+                              shouldMulti={true}
+                          />
+                      ))}
+                  </Route>
+                  <Route exact path="/malendar/">
+                      {fillerWeek.map((el, i) => (
+                          <li
+                              className={`Days__DayContainer Days__Day--filledDay`}
+                              key={"Container__" + i}
+                          >
+                              <DayPlaceholder key={"DayPlaceholder__" + i}/>
+                          </li>
+                      ))}
 
-              {titles.map((el, i) => (
-                  <DayContainer
-                      i={i}
-                      titles={titles}
-                      key={"DayContainer__" + i}
-                      filler={false}
-                      month={date.month}
-                      shouldMulti={true}
-                  />
-              ))}
-            </Route>
-          </Switch>
-        </ol>
+                      {titles.map((el, i) => (
+                          <DayContainer
+                              i={i}
+                              titles={titles}
+                              key={"DayContainer__" + i}
+                              filler={false}
+                              month={date.month}
+                              shouldMulti={true}
+                          />
+                      ))}
+                  </Route>
+              </Switch>
+          </ol>
       </main>
   );
 });
 
 const Weekdays = React.memo(() => (
     <React.Fragment>
-      <li id="Monday">M</li>
-      <li id="Tuesday">T</li>
-      <li id="Wednesday">W</li>
-      <li id="Thursday">T</li>
-      <li id="Friday">F</li>
-      <li id="Saturday">S</li>
-      <li id="Sunday">S</li>
-      <li id="Hiddenday_1"></li>
-      <li id="Hiddenday_2"></li>
+        <li id="Monday">M</li>
+        <li id="Tuesday">T</li>
+        <li id="Wednesday">W</li>
+        <li id="Thursday">T</li>
+        <li id="Friday">F</li>
+        <li id="Saturday">S</li>
+        <li id="Sunday">S</li>
+        <li id="Hiddenday_1"></li>
+        <li id="Hiddenday_2"></li>
     </React.Fragment>
 ));
 

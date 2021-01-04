@@ -24,7 +24,7 @@ const Ongoing = () => {
       }
     }
 
-    xd();
+    if (isRendered) xd();
     console.log("Ongoing updated!");
     document.title = `malendar for current ongoings`;
 

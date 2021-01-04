@@ -1,0 +1,47 @@
+*::selection {
+    background: lightgrey;
+}
+
+.Datepicker input {
+    font-size: calc(20px + 3vw);
+    font-family: "Roboto", sans-serif;
+    background: none;
+    color: white;
+    border: none;
+    outline: none;
+    width: inherit;
+    max-width: max-content;
+    height: 100%;
+}
+
+.Datepicker input:hover, .Datepicker input:focus {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+input::-webkit-datetime-edit-year-field {
+    color: whitesmoke;
+    font-weight: 200;
+}
+
+input::-webkit-datetime-edit-month-field:focus {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+input::-webkit-datetime-edit {
+    border-radius: 10px;
+}
+
+input::-webkit-calendar-picker-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    height: auto;
+    color: transparent;
+    background: transparent;
+}
+
+/*# sourceMappingURL=Datepicker.css.map */
